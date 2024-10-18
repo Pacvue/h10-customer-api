@@ -1,0 +1,57 @@
+# 编译输出目录
+target/
+build/
+
+# IDE 配置文件和目录
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Maven 的临时文件
+.mvn/
+!mvn/wrapper/maven-wrapper.jar
+
+# Gradle 的临时文件
+.gradle/
+build/
+
+# 日志文件
+*.log
+
+# 操作系统产生的文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 依赖的缓存文件
+*.jar
+*.war
+*.ear
+
+# 配置文件中的敏感信息
+*.key
+*.pem
+*.crt
+
+# 其他
+*.class
+*.jar
+*.war
+*.ear
