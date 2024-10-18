@@ -1,4 +1,4 @@
-package com.pacvue.customer.common;
+package com.pacvue.h10.customer.common;
 
 import lombok.Getter;
 
