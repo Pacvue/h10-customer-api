@@ -21,7 +21,7 @@ public class CustomerController {
 
     @GetMapping("accounts")
     public Map<Long, AccountDto> accounts() {
-        List<AccountDto> accounts = customerService.getAccounts(1L);
+        List<AccountDto> accounts = customerService.getAccounts(1546750518L);
         return accounts.stream().collect(Collectors.toMap(AccountDto::getAccountId, Function.identity()));
     }
 }

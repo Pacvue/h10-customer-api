@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@MapperScan("com.pacvue.h10.customer.api")
+@MapperScan("com.pacvue.h10.customer.api.domain.*.mapper")
 @EnableFeignClients(basePackages = "com.pacvue.h10.customer.api")
 public class CustomerApplication {
     public static void main(String[] args) {

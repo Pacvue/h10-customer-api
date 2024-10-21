@@ -7,7 +7,7 @@ spring:
   datasource:
     username: wen.yu@helium10.com
     password: "#fk+0z*V7@lVzJG("
-    url: jdbc:postgresql://helium10-main-rds.helium-staging.com:5432/dba
+    url: jdbc:postgresql://helium10-main-rds.helium-staging.com:5432/helium10
   rabbitmq:
     host: localhost
     port: 5672
