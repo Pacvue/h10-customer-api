@@ -16,9 +16,8 @@
   <name>h10-customer-api</name>
   <description>project for h10 customer api</description>
   <modules>
-    <module>customer-feign-api</module>
-    <module>customer-web</module>
-    <module>customer-common</module>
+    <module>customer-api-protocol</module>
+    <module>customer-api</module>
   </modules>
 
   <profiles>
