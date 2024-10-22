@@ -14,4 +14,6 @@ public class UserInfo implements Serializable {
     private Integer id;
 
     private Long accountId;
+
+    private String email;
 }

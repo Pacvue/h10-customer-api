@@ -16,6 +16,8 @@ public class CustomerAdDataDto implements Serializable {
 
     private Integer userId;
 
+    private Long accountId;
+
     private String email;
 
     private String full_name;

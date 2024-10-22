@@ -17,5 +17,4 @@ public class CustomerApiMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/api/**")
                 .excludePathPatterns("/login", "register");
     }
-
 }

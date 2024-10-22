@@ -5,8 +5,8 @@ import com.pacvue.h10.customer.api.infrastructure.config.UserContext;
 import com.pacvue.h10.customer.dto.response.AccountDto;
 import com.pacvue.h10.customer.dto.response.CustomerAdDataDto;
 import com.pacvue.h10.customer.dto.response.ResponseData;
+import com.pacvue.h10.customer.dto.response.UpsellInfoDto;
 import jakarta.annotation.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +36,15 @@ public class CustomerController {
     public ResponseData<CustomerAdDataDto> meAds() {
         CustomerAdDataDto dataDto = new CustomerAdDataDto();
 //        dataDto.setId(1L);
+        return ResponseData.success(dataDto);
+    }
+
+    /**
+     * Get upsell info of a module for an Account
+     */
+    @GetMapping("uses/upsell-info")
+    public ResponseData<UpsellInfoDto> upsellInfo() {
+        UpsellInfoDto dataDto = new UpsellInfoDto();
         return ResponseData.success(dataDto);
     }
 }
