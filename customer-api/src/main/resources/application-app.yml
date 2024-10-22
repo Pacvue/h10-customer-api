@@ -5,9 +5,9 @@ spring:
   application:
     name: customer-api
   datasource:
-    username: wen.yu@helium10.com
-    password: "#fk+0z*V7@lVzJG("
-    url: jdbc:postgresql://helium10-main-rds.helium-staging.com:5432/helium10
+    username: dba
+    password: dba
+    url: jdbc:postgresql://192.168.127.12:5442/dba
   rabbitmq:
     host: localhost
     port: 5672

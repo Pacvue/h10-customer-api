@@ -10,5 +10,5 @@ public interface CustomerService {
     /**
      * Returns a list of accounts available to the user
      */
-    List<AccountDto> getAccounts(Long userId);
+    List<AccountDto> getAccounts(Integer userId);
 }

@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Resource
     private User2AccountMapper user2AccountMapper;
     @Override
-    public List<AccountDto> getAccounts(Long userId) {
+    public List<AccountDto> getAccounts(Integer userId) {
         return user2AccountMapper.getAccountsByUserId(userId);
     }
 }

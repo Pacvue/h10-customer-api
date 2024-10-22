@@ -11,7 +11,7 @@ import java.time.Instant;
 /**
  * @TableName Account
  */
-@TableName(value ="Account")
+@TableName(value ="\"Account\"")
 @Data
 public class Account {
 
