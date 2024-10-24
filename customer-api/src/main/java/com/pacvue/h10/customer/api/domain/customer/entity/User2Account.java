@@ -1,74 +1,76 @@
 package com.pacvue.h10.customer.api.domain.customer.entity;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+
+import com.mybatisflex.annotation.Column;
+import com.mybatisflex.annotation.Table;
 import lombok.Data;
 
 /**
  * 
  * @TableName User2Account
  */
-@TableName(value ="User2Account")
+@Table(value ="User2Account")
 @Data
 public class User2Account implements Serializable {
     /**
      * 
      */
-    @TableField(value = "user_id")
+    @Column(value = "user_id")
     private Long user_id;
 
     /**
      * 
      */
-    @TableField(value = "Account_id")
+    @Column(value = "Account_id")
     private Long account_id;
 
     /**
      * 
      */
-    @TableField(value = "role")
+    @Column(value = "role")
     private Integer role;
 
     /**
      * 
      */
-    @TableField(value = "permissions")
+    @Column(value = "permissions")
     private Object permissions;
 
     /**
      * 
      */
-    @TableField(value = "status")
+    @Column(value = "status")
     private Integer status;
 
     /**
      * 
      */
-    @TableField(value = "createdAt")
+    @Column(value = "createdAt")
     private Integer createdAt;
 
     /**
      * 
      */
-    @TableField(value = "updatedAt")
+    @Column(value = "updatedAt")
     private Integer updatedAt;
 
     /**
      * 
      */
-    @TableField(value = "activationToken")
+    @Column(value = "activationToken")
     private String activationToken;
 
     /**
      * 
      */
-    @TableField(value = "lastActivityAt")
+    @Column(value = "lastActivityAt")
     private Integer lastActivityAt;
 
     /**
      * 
      */
-    @TableField(value = "isDefaultAccount")
+    @Column(value = "isDefaultAccount")
     private Boolean isDefaultAccount;
 }

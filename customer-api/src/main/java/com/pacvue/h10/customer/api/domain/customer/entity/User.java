@@ -1,199 +1,196 @@
 package com.pacvue.h10.customer.api.domain.customer.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
+import com.mybatisflex.annotation.Column;
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.Table;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 
  * @TableName user
  */
-@TableName(value ="user")
+@Table(value ="user")
 @Data
 public class User implements Serializable {
     /**
      * 
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @Id(value = "id")
     private Integer id;
 
     /**
      * 
      */
-    @TableField(value = "username")
+    @Column(value = "username")
     private String username;
 
     /**
      * 
      */
-    @TableField(value = "auth_key")
+    @Column(value = "auth_key")
     private String auth_key;
 
     /**
      * 
      */
-    @TableField(value = "password_hash")
+    @Column(value = "password_hash")
     private String password_hash;
 
     /**
      * 
      */
-    @TableField(value = "password_reset_token")
+    @Column(value = "password_reset_token")
     private String password_reset_token;
 
     /**
      * 
      */
-    @TableField(value = "email")
+    @Column(value = "email")
     private String email;
 
     /**
      * 
      */
-    @TableField(value = "status")
+    @Column(value = "status")
     private Integer status;
 
     /**
      * 
      */
-    @TableField(value = "created_at")
+    @Column(value = "created_at")
     private Integer created_at;
 
     /**
      * 
      */
-    @TableField(value = "updated_at")
+    @Column(value = "updated_at")
     private Integer updated_at;
 
     /**
      * 
      */
-    @TableField(value = "activation_token")
+    @Column(value = "activation_token")
     private String activation_token;
 
     /**
      * 
      */
-    @TableField(value = "new_email")
+    @Column(value = "new_email")
     private String new_email;
 
     /**
      * 
      */
-    @TableField(value = "auth_token")
+    @Column(value = "auth_token")
     private String auth_token;
 
     /**
      * 
      */
-    @TableField(value = "auth_token_created_at")
+    @Column(value = "auth_token_created_at")
     private Integer auth_token_created_at;
 
     /**
      * 
      */
-    @TableField(value = "auth_key_updated_at")
+    @Column(value = "auth_key_updated_at")
     private Integer auth_key_updated_at;
 
     /**
      * 
      */
-    @TableField(value = "full_name")
+    @Column(value = "full_name")
     private String full_name;
 
     /**
      * 
      */
-    @TableField(value = "first_name")
+    @Column(value = "first_name")
     private String first_name;
 
     /**
      * 
      */
-    @TableField(value = "last_name")
+    @Column(value = "last_name")
     private String last_name;
 
     /**
      * 
      */
-    @TableField(value = "phone")
+    @Column(value = "phone")
     private String phone;
 
     /**
      * 
      */
-    @TableField(value = "phoneConfirmed")
+    @Column(value = "phoneConfirmed")
     private Boolean phoneConfirmed;
 
     /**
      * 
      */
-    @TableField(value = "address")
+    @Column(value = "address")
     private String address;
 
     /**
      * 
      */
-    @TableField(value = "verified")
+    @Column(value = "verified")
     private Boolean verified;
 
     /**
      * 
      */
-    @TableField(value = "lastSignInAt")
+    @Column(value = "lastSignInAt")
     private Integer lastSignInAt;
 
     /**
      * 
      */
-    @TableField(value = "markDeletedAt")
+    @Column(value = "markDeletedAt")
     private Integer markDeletedAt;
 
     /**
      * 
      */
-    @TableField(value = "emailConfirmedAt")
+    @Column(value = "emailConfirmedAt")
     private Integer emailConfirmedAt;
 
     /**
      * 
      */
-    @TableField(value = "defaultLanguage")
+    @Column(value = "defaultLanguage")
     private String defaultLanguage;
 
     /**
      * 
      */
-    @TableField(value = "countryIsoCode")
+    @Column(value = "countryIsoCode")
     private String countryIsoCode;
 
     /**
      * 
      */
-    @TableField(value = "state")
+    @Column(value = "state")
     private String state;
 
     /**
      * 
      */
-    @TableField(value = "city")
+    @Column(value = "city")
     private String city;
 
     /**
      * 
      */
-    @TableField(value = "street")
+    @Column(value = "street")
     private String street;
 
     /**
      * 
      */
-    @TableField(value = "zipCode")
+    @Column(value = "zipCode")
     private String zipCode;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
 }

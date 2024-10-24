@@ -1,23 +1,21 @@
 package com.pacvue.h10.customer.api.infrastructure.config;
 
 import cn.hutool.crypto.digest.BCrypt;
-import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.pacvue.h10.customer.api.domain.customer.entity.AuthToken;
+import com.pacvue.h10.customer.api.domain.customer.entity.User;
 import com.pacvue.h10.customer.api.domain.customer.mapper.AuthTokenMapper;
+import com.pacvue.h10.customer.api.domain.customer.mapper.UserMapper;
 import com.pacvue.h10.customer.api.exception.AuthenticateException;
-import com.pacvue.h10.customer.api.exception.BusinessException;
 import com.pacvue.h10.customer.api.exception.CustomErrorCode;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.http.auth.AuthenticationException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import java.sql.Wrapper;
 import java.util.Collections;
 
 @Component
@@ -29,6 +27,8 @@ public class TokenInterceptor implements HandlerInterceptor {
     private String salt;
     @Resource
     private AuthTokenMapper authTokenMapper;
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -39,17 +39,25 @@ public class TokenInterceptor implements HandlerInterceptor {
             throw new AuthenticateException(new CustomErrorCode(0, "Error occurred", "Your request was made with invalid credentials.", Collections.singletonList("user/signin")));
         }
         // 验证token
-        AuthToken authToken = getAuthToken(token.substring("Bearer ".length()));
-        if(ObjectUtils.isEmpty(authToken)){
+        UserInfo userInfo = getUserInfo(token.substring("Bearer ".length()));
+        if (ObjectUtils.isEmpty(userInfo)) {
             throw new AuthenticateException(new CustomErrorCode(0, "Error occurred", "Your request was made with invalid credentials.", Collections.singletonList("user/signin")));
         }
-        UserInfo userInfo = new UserInfo(authToken.getUserId(), authToken.getAccountId());
         UserContext.setUser(userInfo);
         return true; // 如果token有效，则继续执行请求
     }
 
-    private AuthToken getAuthToken(String token) {
+    private UserInfo getUserInfo(String token) {
         String saltToken = BCrypt.hashpw(token, BLOWFISH_PREFIX + salt);
-        return authTokenMapper.selectOne(Wrappers.<AuthToken>lambdaQuery().eq(AuthToken::getToken, saltToken));
+        QueryWrapper wrapper = QueryWrapper.create();
+        wrapper.eq(AuthToken::getToken, saltToken);
+        AuthToken authToken = authTokenMapper.selectOneByQuery(wrapper);
+        if (ObjectUtils.isEmpty(authToken)) {
+            return null;
+        }
+        UserInfo userInfo = new UserInfo(authToken.getUserId(), authToken.getAccountId());
+        User user = userMapper.selectOneById(userInfo.getId());
+        userInfo.setEmail(user.getEmail());
+        return userInfo;
     }
 }

@@ -16,4 +16,9 @@ public class UserInfo implements Serializable {
     private Long accountId;
 
     private String email;
+
+    public UserInfo(Integer id, Long accountId) {
+        this.id = id;
+        this.accountId = accountId;
+    }
 }

@@ -1,9 +1,9 @@
 package com.pacvue.h10.customer.api.domain.customer.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.mybatisflex.annotation.Column;
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
+import com.mybatisflex.annotation.Table;
 import lombok.Data;
 
 import java.time.Instant;
@@ -11,202 +11,202 @@ import java.time.Instant;
 /**
  * @TableName Account
  */
-@TableName(value ="\"Account\"")
+@Table(value ="\"Account\"")
 @Data
 public class Account {
 
-    @TableId(type = IdType.AUTO)
+    @Id(keyType = KeyType.Auto)
     private Integer id;
 
     /**
      *
      */
-    @TableField(value = "status")
+    @Column(value = "status")
     private Integer status;
 
     /**
      *
      */
-    @TableField(value = "stripe_customer_id")
+    @Column(value = "stripe_customer_id")
     private String stripe_customer_id;
 
     /**
      *
      */
-    @TableField(value = "showFeedbackNeededAlert")
+    @Column(value = "showFeedbackNeededAlert")
     private Boolean showFeedbackNeededAlert;
 
     /**
      *
      */
-    @TableField(value = "hashId")
+    @Column(value = "hashId")
     private String hashId;
 
     /**
      *
      */
-    @TableField(value = "leadCreatedAt")
+    @Column(value = "leadCreatedAt")
     private Integer leadCreatedAt;
 
     /**
      *
      */
-    @TableField(value = "leadMergedAt")
+    @Column(value = "leadMergedAt")
     private Integer leadMergedAt;
 
     /**
      *
      */
-    @TableField(value = "perfomanceDashboardReady")
+    @Column(value = "perfomanceDashboardReady")
     private Boolean perfomanceDashboardReady;
 
     /**
      *
      */
-    @TableField(value = "profitsWanted")
+    @Column(value = "profitsWanted")
     private Boolean profitsWanted;
 
     /**
      *
      */
-    @TableField(value = "profitsEnabledAt")
+    @Column(value = "profitsEnabledAt")
     private Integer profitsEnabledAt;
 
     /**
      *
      */
-    @TableField(value = "defaultCurrency")
+    @Column(value = "defaultCurrency")
     private String defaultCurrency;
 
     /**
      *
      */
-    @TableField(value = "followupEnabled")
+    @Column(value = "followupEnabled")
     private Boolean followupEnabled;
 
     /**
      *
      */
-    @TableField(value = "followupEnabledAt")
+    @Column(value = "followupEnabledAt")
     private Instant followupEnabledAt;
 
     /**
      *
      */
-    @TableField(value = "isPrivileged")
+    @Column(value = "isPrivileged")
     private Boolean isPrivileged;
 
     /**
      *
      */
-    @TableField(value = "markDeletedAt")
+    @Column(value = "markDeletedAt")
     private Integer markDeletedAt;
 
     /**
      *
      */
-    @TableField(value = "ppcEnabled")
+    @Column(value = "ppcEnabled")
     private Boolean ppcEnabled;
 
     /**
      *
      */
-    @TableField(value = "ppcEnabledAt")
+    @Column(value = "ppcEnabledAt")
     private Instant ppcEnabledAt;
 
     /**
      *
      */
-    @TableField(value = "ppcNdaSigned")
+    @Column(value = "ppcNdaSigned")
     private Boolean ppcNdaSigned;
 
     /**
      *
      */
-    @TableField(value = "ppcNdaSignedAt")
+    @Column(value = "ppcNdaSignedAt")
     private Instant ppcNdaSignedAt;
 
     /**
      *
      */
-    @TableField(value = "marketTrackerBearerToken")
+    @Column(value = "marketTrackerBearerToken")
     private String marketTrackerBearerToken;
 
     /**
      *
      */
-    @TableField(value = "portalsEnabled")
+    @Column(value = "portalsEnabled")
     private Boolean portalsEnabled;
 
     /**
      *
      */
-    @TableField(value = "portalsEnabledAt")
+    @Column(value = "portalsEnabledAt")
     private Integer portalsEnabledAt;
 
     /**
      *
      */
-    @TableField(value = "identifiedInSegmentAt")
+    @Column(value = "identifiedInSegmentAt")
     private Integer identifiedInSegmentAt;
 
     /**
      *
      */
-    @TableField(value = "source")
+    @Column(value = "source")
     private String source;
 
     /**
      *
      */
-    @TableField(value = "profitsStarted")
+    @Column(value = "profitsStarted")
     private Boolean profitsStarted;
 
     /**
      *
      */
-    @TableField(value = "profitsStartedAt")
+    @Column(value = "profitsStartedAt")
     private Long profitsStartedAt;
 
     /**
      *
      */
-    @TableField(value = "accountName")
+    @Column(value = "accountName")
     private String accountName;
 
     /**
      *
      */
-    @TableField(value = "createdAt")
+    @Column(value = "createdAt")
     private Integer createdAt;
 
     /**
      *
      */
-    @TableField(value = "inventoryStarted")
+    @Column(value = "inventoryStarted")
     private Boolean inventoryStarted;
 
     /**
      *
      */
-    @TableField(value = "inventoryStartedAt")
+    @Column(value = "inventoryStartedAt")
     private Long inventoryStartedAt;
 
     /**
      * True if account is migrated or initially created in Adtomic
      */
-    @TableField(value = "adtomicEnabled")
+    @Column(value = "adtomicEnabled")
     private Boolean adtomicEnabled;
 
     /**
      *
      */
-    @TableField(value = "adtomicEnabledAt")
+    @Column(value = "adtomicEnabledAt")
     private Long adtomicEnabledAt;
 
     /**
      *
      */
-    @TableField(value = "cardCountryIsoCode")
+    @Column(value = "cardCountryIsoCode")
     private String cardCountryIsoCode;
 }

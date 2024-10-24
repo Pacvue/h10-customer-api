@@ -1,8 +1,5 @@
-package com.pacvue.h10.customer.api.infrastructure.config;
+package com.pacvue.h10.customer.api.exception;
 
-import com.pacvue.h10.customer.api.exception.AuthenticateException;
-import com.pacvue.h10.customer.api.exception.BusinessException;
-import com.pacvue.h10.customer.api.exception.CustomErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,6 +21,19 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     public CustomErrorCode handleBusinessException(BusinessException e) {
         log.error("GlobalExceptionAdvisor.handleOrderException", e);
+        return e.getErrorCode();
+    }
+
+    /**
+     * 参数异常
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(BadRequestHttpException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public CustomErrorCode badRequestHttpException(BadRequestHttpException e) {
+        log.error("GlobalExceptionAdvisor.handleException", e);
         return e.getErrorCode();
     }
 
