@@ -11,7 +11,7 @@ import java.io.Serializable;
  * 
  * @TableName StripeSubscription
  */
-@Table(value ="\"StripeSubscription\"")
+@Table(value ="StripeSubscription")
 @Data
 public class StripeSubscription implements Serializable {
     /**
@@ -29,121 +29,121 @@ public class StripeSubscription implements Serializable {
     /**
      * 
      */
-    @Column(value = "\"Account_id\"")
-    private Long account_id;
+    @Column(value = "Account_id")
+    private Long accountId;
 
     /**
      * 
      */
     @Column(value = "plan_id")
-    private String plan_id;
+    private String planId;
 
     /**
      * 
      */
-    @Column(value = "\"createdAt\"")
+    @Column(value = "createdAt")
     private Integer createdAt;
 
     /**
      * 
      */
-    @Column(value = "\"updatedAt\"")
+    @Column(value = "updatedAt")
     private Integer updatedAt;
 
     /**
      * 
      */
-    @Column(value = "\"isActive\"")
+    @Column(value = "isActive")
     private Boolean isActive;
 
     /**
      * 
      */
-    @Column(value = "\"billingPeriodEndAt\"")
+    @Column(value = "billingPeriodEndAt")
     private Integer billingPeriodEndAt;
 
     /**
      * 
      */
-    @Column(value = "\"cancelAtPeriodEnd\"")
+    @Column(value = "cancelAtPeriodEnd")
     private Boolean cancelAtPeriodEnd;
 
     /**
      * 
      */
-    @Column(value = "\"freePlanNotify\"")
+    @Column(value = "freePlanNotify")
     private Boolean freePlanNotify;
 
     /**
      * 
      */
-    @Column(value = "\"couponId\"")
+    @Column(value = "couponId")
     private String couponId;
 
     /**
      * 
      */
-    @Column(value = "\"cardChangedAt\"")
+    @Column(value = "cardChangedAt")
     private Integer cardChangedAt;
 
     /**
      * 
      */
-    @Column(value = "\"replenishesAt\"")
+    @Column(value = "replenishesAt")
     private Integer replenishesAt;
 
     /**
      * 
      */
-    @Column(value = "\"plansList\"")
+    @Column(value = "plansList")
     private Object plansList;
 
     /**
      * 
      */
-    @Column(value = "\"heliumPlanId\"")
+    @Column(value = "heliumPlanId")
     private String heliumPlanId;
 
     /**
      * 
      */
-    @Column(value = "\"isTrial\"")
+    @Column(value = "isTrial")
     private Boolean isTrial;
 
     /**
      * 
      */
-    @Column(value = "\"isKtFull\"")
+    @Column(value = "isKtFull")
     private Boolean isKtFull;
 
     /**
      * 
      */
-    @Column(value = "\"isHjaFull\"")
+    @Column(value = "isHjaFull")
     private Boolean isHjaFull;
 
     /**
      * 
      */
-    @Column(value = "\"subscribedAt\"")
+    @Column(value = "subscribedAt")
     private Integer subscribedAt;
 
     /**
      * 
      */
-    @Column(value = "\"isIncomplete\"")
+    @Column(value = "isIncomplete")
     private Boolean isIncomplete;
 
     /**
      * 
      */
-    @Column(value = "\"freedomTicketEnabled\"")
+    @Column(value = "freedomTicketEnabled")
     private Boolean freedomTicketEnabled;
 
     /**
      * 
      */
-    @Column(value = "\"ftCouponActivated\"")
+    @Column(value = "ftCouponActivated")
     private Boolean ftCouponActivated;
 
     /**
@@ -155,13 +155,13 @@ public class StripeSubscription implements Serializable {
     /**
      * 
      */
-    @Column(value = "\"StripeProduct_id\"")
-    private String stripeProduct_id;
+    @Column(value = "StripeProduct_id")
+    private String stripeProductId;
 
     /**
      * 
      */
-    @Column(value = "\"currentPlanStartedAt\"")
+    @Column(value = "currentPlanStartedAt")
     private Integer currentPlanStartedAt;
 
     /**
@@ -173,12 +173,12 @@ public class StripeSubscription implements Serializable {
     /**
      * 
      */
-    @Column(value = "\"initialPaymentMethod\"")
+    @Column(value = "initialPaymentMethod")
     private String initialPaymentMethod;
 
     /**
      * 
      */
-    @Column(value = "\"addonsList\"")
+    @Column(value = "addonsList")
     private Object addonsList;
 }

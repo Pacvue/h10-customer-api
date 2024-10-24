@@ -11,13 +11,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserInfo implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     private Long accountId;
 
     private String email;
 
-    public UserInfo(Integer id, Long accountId) {
+    public UserInfo(Long id, Long accountId) {
         this.id = id;
         this.accountId = accountId;
     }

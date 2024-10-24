@@ -11,7 +11,7 @@ import java.time.Instant;
 /**
  * @TableName Account
  */
-@Table(value ="\"Account\"")
+@Table(value ="Account")
 @Data
 public class Account {
 
@@ -28,7 +28,7 @@ public class Account {
      *
      */
     @Column(value = "stripe_customer_id")
-    private String stripe_customer_id;
+    private String stripeCustomerId;
 
     /**
      *

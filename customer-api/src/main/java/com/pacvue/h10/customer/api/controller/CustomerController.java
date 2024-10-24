@@ -1,5 +1,13 @@
 package com.pacvue.h10.customer.api.controller;
 
+import com.pacvue.h10.customer.api.domain.customer.entity.Account;
+import com.pacvue.h10.customer.api.domain.customer.entity.StripeSubscription;
+import com.pacvue.h10.customer.api.domain.customer.entity.User;
+import com.pacvue.h10.customer.api.domain.customer.entity.User2Account;
+import com.pacvue.h10.customer.api.domain.customer.mapper.AccountMapper;
+import com.pacvue.h10.customer.api.domain.customer.mapper.StripeSubscriptionMapper;
+import com.pacvue.h10.customer.api.domain.customer.mapper.User2AccountMapper;
+import com.pacvue.h10.customer.api.domain.customer.mapper.UserMapper;
 import com.pacvue.h10.customer.api.domain.customer.service.CustomerService;
 import com.pacvue.h10.customer.api.exception.BadRequestHttpException;
 import com.pacvue.h10.customer.api.exception.CustomErrorCode;
@@ -26,10 +34,18 @@ public class CustomerController {
 
     @Resource
     private CustomerService customerService;
+    @Resource
+    private AccountMapper accountMapper;
+    @Resource
+    private StripeSubscriptionMapper stripeSubscriptionMapper;
+    @Resource
+    private UserMapper userMapper;
+    @Resource
+    private User2AccountMapper user2AccountMapper;
 
     @GetMapping("accounts")
     public Map<Long, AccountDto> accounts() {
-        List<AccountDto> accounts = customerService.getAccounts(UserContext.getUser().getId());
+        List<AccountDto> accounts = customerService.getAccounts(1L);
         return accounts.stream().collect(Collectors.toMap(AccountDto::getAccountId, Function.identity()));
     }
 

@@ -12,19 +12,19 @@ import lombok.Data;
  * 
  * @TableName AuthToken
  */
-@Table(value ="\"AuthToken\"")
+@Table(value ="AuthToken")
 @Data
 public class AuthToken implements Serializable {
     /**
      * 
      */
     @Id(value = "id")
-    private Integer id;
+    private Long id;
 
     /**
      * 
      */
-    @Column(value = "\"Account_id\"")
+    @Column(value = "Account_id")
     private Long accountId;
 
     /**
@@ -48,32 +48,32 @@ public class AuthToken implements Serializable {
     /**
      * 
      */
-    @Column(value = "\"createdAt\"")
+    @Column(value = "createdAt")
     private Date createdAt;
 
     /**
      * 
      */
-    @Column(value = "\"isActive\"")
+    @Column(value = "isActive")
     private Boolean isActive;
 
     /**
      * 
      */
-    @Column(value = "\"instantHash\"")
+    @Column(value = "instantHash")
     private String instantHash;
 
     /**
      * 
      */
-    @Column(value = "\"isHashUsed\"")
+    @Column(value = "isHashUsed")
     private Boolean isHashUsed;
 
     /**
      * 
      */
     @Column(value = "user_id")
-    private Integer userId;
+    private Long userId;
 
     /**
      * ID unique for user session
@@ -90,12 +90,12 @@ public class AuthToken implements Serializable {
     /**
      * 
      */
-    @Column(value = "\"sessionToken\"")
+    @Column(value = "sessionToken")
     private String sessionToken;
 
     /**
      * 
      */
-    @Column(value = "\"isAdminSuperLogin\"")
+    @Column(value = "isAdminSuperLogin")
     private Boolean isAdminSuperLogin;
 }

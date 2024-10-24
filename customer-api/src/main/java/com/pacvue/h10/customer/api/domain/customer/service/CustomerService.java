@@ -11,7 +11,7 @@ public interface CustomerService {
     /**
      * Returns a list of accounts available to the user
      */
-    List<AccountDto> getAccounts(Integer userId);
+    List<AccountDto> getAccounts(Long userId);
 
     /**
      * Get upsell info of a module for an Account

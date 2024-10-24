@@ -18,7 +18,7 @@ public class User implements Serializable {
      * 
      */
     @Id(value = "id")
-    private Integer id;
+    private Long id;
 
     /**
      * 
@@ -30,19 +30,19 @@ public class User implements Serializable {
      * 
      */
     @Column(value = "auth_key")
-    private String auth_key;
+    private String authKey;
 
     /**
      * 
      */
     @Column(value = "password_hash")
-    private String password_hash;
+    private String passwordHash;
 
     /**
      * 
      */
     @Column(value = "password_reset_token")
-    private String password_reset_token;
+    private String passwordResetToken;
 
     /**
      * 
@@ -60,61 +60,61 @@ public class User implements Serializable {
      * 
      */
     @Column(value = "created_at")
-    private Integer created_at;
+    private Integer createdAt;
 
     /**
      * 
      */
     @Column(value = "updated_at")
-    private Integer updated_at;
+    private Integer updatedAt;
 
     /**
      * 
      */
     @Column(value = "activation_token")
-    private String activation_token;
+    private String activationToken;
 
     /**
      * 
      */
     @Column(value = "new_email")
-    private String new_email;
+    private String newEmail;
 
     /**
      * 
      */
     @Column(value = "auth_token")
-    private String auth_token;
+    private String authToken;
 
     /**
      * 
      */
     @Column(value = "auth_token_created_at")
-    private Integer auth_token_created_at;
+    private Integer authTokenCreatedAt;
 
     /**
      * 
      */
     @Column(value = "auth_key_updated_at")
-    private Integer auth_key_updated_at;
+    private Integer authKeyUpdatedAt;
 
     /**
      * 
      */
     @Column(value = "full_name")
-    private String full_name;
+    private String fullName;
 
     /**
      * 
      */
     @Column(value = "first_name")
-    private String first_name;
+    private String firstName;
 
     /**
      * 
      */
     @Column(value = "last_name")
-    private String last_name;
+    private String lastName;
 
     /**
      * 

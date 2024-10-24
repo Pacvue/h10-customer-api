@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Resource
     private StripeSubscriptionMapper stripeSubscriptionMapper;
     @Override
-    public List<AccountDto> getAccounts(Integer userId) {
+    public List<AccountDto> getAccounts(Long userId) {
         return user2AccountMapper.getAccountsByUserId(userId);
     }
 
@@ -29,6 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
     public UpsellInfoDto upsellInfo(Long accountId, String moduleId, List<String> suggestedPlans) {
         QueryWrapper wrapper = QueryWrapper.create().select().where(STRIPE_SUBSCRIPTION.ACCOUNT_ID.eq(accountId));
         StripeSubscription stripeSubscription = stripeSubscriptionMapper.selectOneByQuery(wrapper);
+
         return null;
     }
 }

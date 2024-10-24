@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface User2AccountMapper extends BaseMapper<User2Account> {
 
-    List<AccountDto> getAccountsByUserId(@Param("userId") Integer userId);
+    List<AccountDto> getAccountsByUserId(@Param("userId") Long userId);
 }
