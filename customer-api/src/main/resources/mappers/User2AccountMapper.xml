@@ -5,7 +5,7 @@
 <mapper namespace="com.pacvue.h10.customer.api.domain.customer.mapper.User2AccountMapper">
 
     <select id="getAccountsByUserId" resultType="com.pacvue.h10.customer.dto.response.AccountDto">
-        select ua."Account_id" as account_id, a."accountName", role, permissions, ua."createdAt", ua."isDefaultAccount"
+        select ua."Account_id" as accountId, a."accountName", role, permissions, ua."createdAt", ua."isDefaultAccount"
         from "User2Account" ua
                  left join "Account" a on ua."Account_id" = a.id
         where ua.user_id = #{userId} and ua.status = 1

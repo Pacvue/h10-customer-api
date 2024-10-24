@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 /**
  * A set of Stringants and methods which helps to work with Stripe Plans and Subscriptions
  */
-public interface PageHelper {
+public interface PlansHelper {
 
     String HELIUM10_ENTERPRISE_PRODUCT = "Helium10_Enterprise";
 

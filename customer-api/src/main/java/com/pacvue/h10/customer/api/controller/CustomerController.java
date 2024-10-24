@@ -68,7 +68,8 @@ public class CustomerController {
         if(ObjectUtils.isEmpty(reqDto.getModuleId())){
             throw new BadRequestHttpException(new CustomErrorCode(400, "moduleId is required"));
         }
-        UpsellInfoDto upsellInfo = customerService.upsellInfo(UserContext.getUser().getAccountId(), reqDto.getModuleId(), reqDto.getSuggestedPlans());
+        // UserContext.getUser().getAccountId()
+        UpsellInfoDto upsellInfo = customerService.upsellInfo(1L, reqDto.getModuleId(), reqDto.getSuggestedPlans());
         return ResponseData.success(upsellInfo);
     }
 }

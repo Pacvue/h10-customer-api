@@ -1,6 +1,7 @@
 package com.pacvue.h10.customer.api.domain.customer.entity;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 import com.mybatisflex.annotation.Column;
@@ -19,7 +20,7 @@ public class AuthToken implements Serializable {
      * 
      */
     @Id(value = "id")
-    private Long id;
+    private Integer id;
 
     /**
      * 
@@ -49,7 +50,7 @@ public class AuthToken implements Serializable {
      * 
      */
     @Column(value = "createdAt")
-    private Date createdAt;
+    private Instant createdAt;
 
     /**
      * 

@@ -16,7 +16,7 @@ import java.time.Instant;
 public class Account {
 
     @Id(keyType = KeyType.Auto)
-    private Integer id;
+    private Long id;
 
     /**
      *
