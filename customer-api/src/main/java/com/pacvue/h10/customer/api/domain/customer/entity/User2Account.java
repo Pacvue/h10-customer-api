@@ -36,7 +36,7 @@ public class User2Account implements Serializable {
      * 
      */
     @Column(value = "permissions")
-    private Object permissions;
+    private String permissions;
 
     /**
      * 
