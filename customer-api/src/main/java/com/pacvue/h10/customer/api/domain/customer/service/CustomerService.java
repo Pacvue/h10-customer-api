@@ -20,4 +20,9 @@ public interface CustomerService {
      * @param suggestedPlans list of suggested plans
      */
     UpsellInfoDto upsellInfo(Long accountId, String moduleId, List<String> suggestedPlans);
+
+    /**
+     * Get ADS-specific customer data
+     */
+    void meAds();
 }

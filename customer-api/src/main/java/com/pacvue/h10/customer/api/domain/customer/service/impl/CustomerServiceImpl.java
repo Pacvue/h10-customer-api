@@ -1,8 +1,12 @@
 package com.pacvue.h10.customer.api.domain.customer.service.impl;
 
 import com.mybatisflex.core.query.QueryWrapper;
+import com.pacvue.h10.customer.api.domain.customer.entity.Account;
+import com.pacvue.h10.customer.api.domain.customer.entity.User;
+import com.pacvue.h10.customer.api.domain.customer.mapper.AccountMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.StripeSubscriptionMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.User2AccountMapper;
+import com.pacvue.h10.customer.api.domain.customer.mapper.UserMapper;
 import com.pacvue.h10.customer.api.domain.customer.service.CustomerService;
 import com.pacvue.h10.customer.dto.response.AccountDto;
 import com.pacvue.h10.customer.dto.response.UpsellInfoDto;
@@ -20,6 +24,10 @@ public class CustomerServiceImpl implements CustomerService {
     private User2AccountMapper user2AccountMapper;
     @Resource
     private StripeSubscriptionMapper stripeSubscriptionMapper;
+    @Resource
+    private UserMapper userMapper;
+    @Resource
+    private AccountMapper accountMapper;
     @Override
     public List<AccountDto> getAccounts(Long userId) {
         return user2AccountMapper.getAccountsByUserId(userId);
@@ -30,5 +38,12 @@ public class CustomerServiceImpl implements CustomerService {
 
 
         return null;
+    }
+
+    @Override
+    public void meAds() {
+        User user = userMapper.selectOneById(1L);
+        Account account = accountMapper.selectOneById(1L);
+
     }
 }

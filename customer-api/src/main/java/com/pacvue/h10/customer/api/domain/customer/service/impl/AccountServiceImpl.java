@@ -36,8 +36,8 @@ public class AccountServiceImpl implements AccountService {
                     accountId(accountId).
                     planId(PlansHelper.HELIUM10_FREE_PLAN).
                     heliumPlanId(PlansHelper.HELIUM10_FREE_PLAN).
-                    createdAt(Instant.now().getEpochSecond()).
-                    updatedAt(Instant.now().getEpochSecond()).
+                    createdAt((int) Instant.now().getEpochSecond()).
+                    updatedAt((int) Instant.now().getEpochSecond()).
                     isActive(true).build();
 
                     // "billingPeriodEndAt" => DateHelper::getTimeByMonthInterval(1),

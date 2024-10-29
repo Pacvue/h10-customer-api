@@ -55,7 +55,7 @@ public class CustomerController {
     @GetMapping("me/ads")
     public ResponseData<CustomerAdDataDto> meAds() {
         CustomerAdDataDto dataDto = new CustomerAdDataDto();
-//        dataDto.setId(1L);
+        customerService.meAds();
         return ResponseData.success(dataDto);
     }
 
@@ -65,7 +65,7 @@ public class CustomerController {
     @GetMapping("uses/upsell-info")
     public ResponseData<UpsellInfoDto> upsellInfo(UpsellInfoReqDto reqDto) {
         UpsellInfoDto dataDto = new UpsellInfoDto();
-        if(ObjectUtils.isEmpty(reqDto.getModuleId())){
+        if (ObjectUtils.isEmpty(reqDto.getModuleId())) {
             throw new BadRequestHttpException(new CustomErrorCode(400, "moduleId is required"));
         }
         // UserContext.getUser().getAccountId()
