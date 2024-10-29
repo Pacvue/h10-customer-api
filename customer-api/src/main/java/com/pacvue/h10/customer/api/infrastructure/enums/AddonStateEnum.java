@@ -4,7 +4,7 @@ import lombok.Getter;
 
 public enum AddonStateEnum {
 
-    INCLUDE("included"),
+    INCLUDED("included"),
 
     ADDED("added");
 

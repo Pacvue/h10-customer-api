@@ -9,11 +9,6 @@ import java.util.List;
 public interface CustomerService {
 
     /**
-     * Returns a list of accounts available to the user
-     */
-    List<AccountDto> getAccounts(Long userId);
-
-    /**
      * Get upsell info of a module for an Account
      * @param accountId Account id
      * @param moduleId module id

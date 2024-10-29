@@ -1,84 +1,98 @@
-package com.pacvue.h10.customer.api.infrastructure.constant;
+package com.pacvue.h10.customer.api.infrastructure.helper;
+
+import com.pacvue.h10.customer.api.domain.customer.entity.StripePlan;
+import com.pacvue.h10.customer.api.domain.customer.mapper.StripePlanMapper;
+import com.pacvue.h10.customer.api.infrastructure.util.RedisService;
+import jakarta.annotation.Resource;
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  * A set of Stringants and methods which helps to work with Stripe Plans and Subscriptions
  */
-public interface PlansHelper {
+@Component
+public class PlansHelper {
 
-    String HELIUM10_ENTERPRISE_PRODUCT = "Helium10_Enterprise";
+    @Resource
+    private RedisService redisService;
+    @Resource
+    private StripePlanMapper stripePlanMapper;
+
+    public static String HELIUM10_ENTERPRISE_PRODUCT = "Helium10_Enterprise";
 
     // Monthly Plans
-    String HELIUM10_FREE_PLAN = "Helium10_Free";
-    String HELIUM10_STARTER_PLAN = "Helium10_Starter";
-    String HELIUM10_STARTER_39_PLAN = "Helium10_Starter_39";
-    String HELIUM10_A_LA_CARTE_PLAN = "Helium10_ALaCarte";
-    String HELIUM10_GOLD_PLAN = "Helium10_Gold";
-    String HELIUM10_PLATINUM_PLAN = "Helium10_Platinum";
-    String HELIUM10_PLATINUM_99_PLAN = "Helium10_Platinum_99";
-    String HELIUM10_PLATINUM_FAST_ACTION_PLAN = "Helium10_Platinum_FastAction";
-    String HELIUM10_DIAMOND_PLAN = "Helium10_Diamond";
-    String HELIUM10_DIAMOND_199_PLAN = "Helium10_Diamond_199";
-    String HELIUM10_DIAMOND_249_PLAN = "Helium10_Diamond_249";
-    String HELIUM10_ELITE_PLAN = "Helium10_Elite";
-    String HELIUM10_ELITE_399_PLAN = "Helium10_Elite_399";
+    public static String HELIUM10_FREE_PLAN = "Helium10_Free";
+    public static String HELIUM10_STARTER_PLAN = "Helium10_Starter";
+    public static String HELIUM10_STARTER_39_PLAN = "Helium10_Starter_39";
+    public static String HELIUM10_A_LA_CARTE_PLAN = "Helium10_ALaCarte";
+    public static String HELIUM10_GOLD_PLAN = "Helium10_Gold";
+    public static String HELIUM10_PLATINUM_PLAN = "Helium10_Platinum";
+    public static String HELIUM10_PLATINUM_99_PLAN = "Helium10_Platinum_99";
+    public static String HELIUM10_PLATINUM_FAST_ACTION_PLAN = "Helium10_Platinum_FastAction";
+    public static String HELIUM10_DIAMOND_PLAN = "Helium10_Diamond";
+    public static String HELIUM10_DIAMOND_199_PLAN = "Helium10_Diamond_199";
+    public static String HELIUM10_DIAMOND_249_PLAN = "Helium10_Diamond_249";
+    public static String HELIUM10_ELITE_PLAN = "Helium10_Elite";
+    public static String HELIUM10_ELITE_399_PLAN = "Helium10_Elite_399";
 
     // Quarterly Plans
-    String HELIUM10_ELITE_QUARTER_PLAN = "Helium10_Elite_Quarter";
+    public static String HELIUM10_ELITE_QUARTER_PLAN = "Helium10_Elite_Quarter";
 
     // Annual Plans
-    String HELIUM10_STARTER_ANNUAL_PLAN = "Helium10_StarterAnnual";
-    String HELIUM10_STARTER_ANNUAL_339_PLAN = "Helium10_StarterAnnual_339";
-    String HELIUM10_A_LA_CARTE_ANNUAL_PLAN = "Helium10_ALaCarteAnnual";
-    String HELIUM10_GOLD_ANNUAL_PLAN = "Helium10_GoldAnnual";
-    String HELIUM10_PLATINUM_ANNUAL_PLAN = "Helium10_PlatinumAnnual";
-    String HELIUM10_PLATINUM_ANNUAL_999_PLAN = "Helium10_PlatinumAnnual_999";
-    String HELIUM10_DIAMOND_ANNUAL_PLAN = "Helium10_DiamondAnnual";
-    String HELIUM10_DIAMOND_ANNUAL_1999_PLAN = "Helium10_DiamondAnnual_1999";
-    String HELIUM10_DIAMOND_ANNUAL_2499_PLAN = "Helium10_DiamondAnnual_2499";
-    String HELIUM10_ELITE_ANNUAL_PLAN = "Helium10_Elite_Annual";
+    public static String HELIUM10_STARTER_ANNUAL_PLAN = "Helium10_StarterAnnual";
+    public static String HELIUM10_STARTER_ANNUAL_339_PLAN = "Helium10_StarterAnnual_339";
+    public static String HELIUM10_A_LA_CARTE_ANNUAL_PLAN = "Helium10_ALaCarteAnnual";
+    public static String HELIUM10_GOLD_ANNUAL_PLAN = "Helium10_GoldAnnual";
+    public static String HELIUM10_PLATINUM_ANNUAL_PLAN = "Helium10_PlatinumAnnual";
+    public static String HELIUM10_PLATINUM_ANNUAL_999_PLAN = "Helium10_PlatinumAnnual_999";
+    public static String HELIUM10_DIAMOND_ANNUAL_PLAN = "Helium10_DiamondAnnual";
+    public static String HELIUM10_DIAMOND_ANNUAL_1999_PLAN = "Helium10_DiamondAnnual_1999";
+    public static String HELIUM10_DIAMOND_ANNUAL_2499_PLAN = "Helium10_DiamondAnnual_2499";
+    public static String HELIUM10_ELITE_ANNUAL_PLAN = "Helium10_Elite_Annual";
 
     // A La Carte Plans
-    String HELIUM10_A_LA_CARTE_MAGNET = "Helium10_ALC_Magnet";
-    String HELIUM10_A_LA_CARTE_MAGNET_39 = "Helium10_ALC_Magnet_39";
-    String HELIUM10_A_LA_CARTE_KT = "Helium10_ALC_KeywordTracker";
-    String HELIUM10_A_LA_CARTE_KT_59 = "Helium10_ALC_KeywordTracker_59";
-    String HELIUM10_A_LA_CARTE_HJA = "Helium10_ALC_HijackerAlert";
-    String HELIUM10_A_LA_CARTE_ALERTS_39 = "Helium10_ALC_Alerts_39";
-    String HELIUM10_A_LA_CARTE_RG = "Helium10_ALC_RefundGenie";
-    String HELIUM10_A_LA_CARTE_RG_99 = "Helium10_ALC_RefundGenie_99";
-    String HELIUM10_A_LA_CARTE_CEREBRO = "Helium10_ALC_Cerebro";
-    String HELIUM10_A_LA_CARTE_CEREBRO_39 = "Helium10_ALC_Cerebro_39";
-    String HELIUM10_A_LA_CARTE_BLACKBOX = "Helium10_ALC_BlackBox";
-    String HELIUM10_A_LA_CARTE_BLACKBOX_39 = "Helium10_ALC_BlackBox_39";
-    String HELIUM10_A_LA_CARTE_5KCHECKER = "Helium10_ALC_5KChecker";
-    String HELIUM10_A_LA_CARTE_IC_19 = "Helium10_ALC_IndexChecker_19";
-    String HELIUM10_A_LA_CARTE_XRAY = "Helium10_ALC_Extension";
-    String HELIUM10_A_LA_CARTE_XRAY_19 = "Helium10_ALC_Extension_19";
-    String HELIUM10_A_LA_CARTE_PROFITS = "Helium10_ALC_Profits";
-    String HELIUM10_A_LA_CARTE_PROFITS_39 = "Helium10_ALC_Profits_39";
+    public static String HELIUM10_A_LA_CARTE_MAGNET = "Helium10_ALC_Magnet";
+    public static String HELIUM10_A_LA_CARTE_MAGNET_39 = "Helium10_ALC_Magnet_39";
+    public static String HELIUM10_A_LA_CARTE_KT = "Helium10_ALC_KeywordTracker";
+    public static String HELIUM10_A_LA_CARTE_KT_59 = "Helium10_ALC_KeywordTracker_59";
+    public static String HELIUM10_A_LA_CARTE_HJA = "Helium10_ALC_HijackerAlert";
+    public static String HELIUM10_A_LA_CARTE_ALERTS_39 = "Helium10_ALC_Alerts_39";
+    public static String HELIUM10_A_LA_CARTE_RG = "Helium10_ALC_RefundGenie";
+    public static String HELIUM10_A_LA_CARTE_RG_99 = "Helium10_ALC_RefundGenie_99";
+    public static String HELIUM10_A_LA_CARTE_CEREBRO = "Helium10_ALC_Cerebro";
+    public static String HELIUM10_A_LA_CARTE_CEREBRO_39 = "Helium10_ALC_Cerebro_39";
+    public static String HELIUM10_A_LA_CARTE_BLACKBOX = "Helium10_ALC_BlackBox";
+    public static String HELIUM10_A_LA_CARTE_BLACKBOX_39 = "Helium10_ALC_BlackBox_39";
+    public static String HELIUM10_A_LA_CARTE_5KCHECKER = "Helium10_ALC_5KChecker";
+    public static String HELIUM10_A_LA_CARTE_IC_19 = "Helium10_ALC_IndexChecker_19";
+    public static String HELIUM10_A_LA_CARTE_XRAY = "Helium10_ALC_Extension";
+    public static String HELIUM10_A_LA_CARTE_XRAY_19 = "Helium10_ALC_Extension_19";
+    public static String HELIUM10_A_LA_CARTE_PROFITS = "Helium10_ALC_Profits";
+    public static String HELIUM10_A_LA_CARTE_PROFITS_39 = "Helium10_ALC_Profits_39";
 
-    String HELIUM10_A_LA_CARTE_MAGNET_ANNUAL = "Helium10_ALC_Magnet_Annual";
-    String HELIUM10_A_LA_CARTE_MAGNET_ANNUAL_390 = "Helium10_ALC_Magnet_Annual_390";
-    String HELIUM10_A_LA_CARTE_KT_ANNUAL = "Helium10_ALC_KeywordTracker_Annual";
-    String HELIUM10_A_LA_CARTE_KT_ANNUAL_590 = "Helium10_ALC_KeywordTracker_Annual_590";
-    String HELIUM10_A_LA_CARTE_HJA_ANNUAL = "Helium10_ALC_HijackerAlert_Annual";
-    String HELIUM10_A_LA_CARTE_ALERTS_ANNUAL_390 = "Helium10_ALC_Alerts_Annual_390";
-    String HELIUM10_A_LA_CARTE_RG_ANNUAL = "Helium10_ALC_RefundGenie_Annual";
-    String HELIUM10_A_LA_CARTE_RG_ANNUAL_990 = "Helium10_ALC_RefundGenie_Annual_990";
-    String HELIUM10_A_LA_CARTE_CEREBRO_ANNUAL = "Helium10_ALC_Cerebro_Annual";
-    String HELIUM10_A_LA_CARTE_CEREBRO_ANNUAL_390 = "Helium10_ALC_Cerebro_Annual_390";
-    String HELIUM10_A_LA_CARTE_BLACKBOX_ANNUAL = "Helium10_ALC_BlackBox_Annual";
-    String HELIUM10_A_LA_CARTE_BLACKBOX_ANNUAL_390 = "Helium10_ALC_BlackBox_Annual_390";
-    String HELIUM10_A_LA_CARTE_5KCHECKER_ANNUAL = "Helium10_ALC_5KChecker_Annual";
-    String HELIUM10_A_LA_CARTE_IC_ANNUAL_190 = "Helium10_ALC_IndexChecker_Annual_190";
-    String HELIUM10_A_LA_CARTE_XRAY_ANNUAL = "Helium10_ALC_Extension_Annual";
-    String HELIUM10_A_LA_CARTE_XRAY_ANNUAL_190 = "Helium10_ALC_Extension_Annual_190";
-    String HELIUM10_A_LA_CARTE_PROFITS_ANNUAL = "Helium10_ALC_Profits_Annual";
-    String HELIUM10_A_LA_CARTE_PROFITS_ANNUAL_390 = "Helium10_ALC_Profits_Annual_390";
+    public static String HELIUM10_A_LA_CARTE_MAGNET_ANNUAL = "Helium10_ALC_Magnet_Annual";
+    public static String HELIUM10_A_LA_CARTE_MAGNET_ANNUAL_390 = "Helium10_ALC_Magnet_Annual_390";
+    public static String HELIUM10_A_LA_CARTE_KT_ANNUAL = "Helium10_ALC_KeywordTracker_Annual";
+    public static String HELIUM10_A_LA_CARTE_KT_ANNUAL_590 = "Helium10_ALC_KeywordTracker_Annual_590";
+    public static String HELIUM10_A_LA_CARTE_HJA_ANNUAL = "Helium10_ALC_HijackerAlert_Annual";
+    public static String HELIUM10_A_LA_CARTE_ALERTS_ANNUAL_390 = "Helium10_ALC_Alerts_Annual_390";
+    public static String HELIUM10_A_LA_CARTE_RG_ANNUAL = "Helium10_ALC_RefundGenie_Annual";
+    public static String HELIUM10_A_LA_CARTE_RG_ANNUAL_990 = "Helium10_ALC_RefundGenie_Annual_990";
+    public static String HELIUM10_A_LA_CARTE_CEREBRO_ANNUAL = "Helium10_ALC_Cerebro_Annual";
+    public static String HELIUM10_A_LA_CARTE_CEREBRO_ANNUAL_390 = "Helium10_ALC_Cerebro_Annual_390";
+    public static String HELIUM10_A_LA_CARTE_BLACKBOX_ANNUAL = "Helium10_ALC_BlackBox_Annual";
+    public static String HELIUM10_A_LA_CARTE_BLACKBOX_ANNUAL_390 = "Helium10_ALC_BlackBox_Annual_390";
+    public static String HELIUM10_A_LA_CARTE_5KCHECKER_ANNUAL = "Helium10_ALC_5KChecker_Annual";
+    public static String HELIUM10_A_LA_CARTE_IC_ANNUAL_190 = "Helium10_ALC_IndexChecker_Annual_190";
+    public static String HELIUM10_A_LA_CARTE_XRAY_ANNUAL = "Helium10_ALC_Extension_Annual";
+    public static String HELIUM10_A_LA_CARTE_XRAY_ANNUAL_190 = "Helium10_ALC_Extension_Annual_190";
+    public static String HELIUM10_A_LA_CARTE_PROFITS_ANNUAL = "Helium10_ALC_Profits_Annual";
+    public static String HELIUM10_A_LA_CARTE_PROFITS_ANNUAL_390 = "Helium10_ALC_Profits_Annual_390";
 
     // Chinese plans
     String HELIUM10_EXPLORER_CN = "Helium10_Explorer_Cn";
@@ -180,22 +194,22 @@ public interface PlansHelper {
             HELIUM10_ELITE_ANNUAL_PLAN);
 
     // Follow-Up Plans
-    String HELIUM10_FOLLOW_UP_BEGINNER = "Helium10_FollowUp_Beginner";
-    String HELIUM10_FOLLOW_UP_PRO = "Helium10_FollowUp_Pro";
-    String HELIUM10_FOLLOW_UP_ENTERPRISE = "Helium10_FollowUp_Enterprise";
+    public static String HELIUM10_FOLLOW_UP_BEGINNER = "Helium10_FollowUp_Beginner";
+    public static String HELIUM10_FOLLOW_UP_PRO = "Helium10_FollowUp_Pro";
+    public static String HELIUM10_FOLLOW_UP_ENTERPRISE = "Helium10_FollowUp_Enterprise";
 
     // MT360 Plans
-    String HELIUM10_MT360_PLAN = "Helium10_MT360";
-    String HELIUM10_MT360_ANNUAL_PLAN = "Helium10_MT360_Annual";
+    public static String HELIUM10_MT360_PLAN = "Helium10_MT360";
+    public static String HELIUM10_MT360_ANNUAL_PLAN = "Helium10_MT360_Annual";
 
     List<String> HELIUM10_MT360_PLANS = Arrays.asList(
             HELIUM10_MT360_PLAN,
             HELIUM10_MT360_ANNUAL_PLAN);
 
     // Start Your Business plans
-    String HELIUM10_START_YOUR_BUSINESS_PLAN = "Helium10_Start_Your_Business";
-    String HELIUM10_START_YOUR_BUSINESS_QUARTER_PLAN = "Helium10_Start_Your_Business_Quarter";
-    String HELIUM10_START_YOUR_BUSINESS_ANNUAL_PLAN = "Helium10_Start_Your_Business_Annual";
+    public static String HELIUM10_START_YOUR_BUSINESS_PLAN = "Helium10_Start_Your_Business";
+    public static String HELIUM10_START_YOUR_BUSINESS_QUARTER_PLAN = "Helium10_Start_Your_Business_Quarter";
+    public static String HELIUM10_START_YOUR_BUSINESS_ANNUAL_PLAN = "Helium10_Start_Your_Business_Annual";
     List<String> HELIUM10_START_YOUR_BUSINESS_PLANS = Arrays.asList(
             HELIUM10_START_YOUR_BUSINESS_PLAN,
             HELIUM10_START_YOUR_BUSINESS_QUARTER_PLAN,
@@ -204,9 +218,9 @@ public interface PlansHelper {
             HELIUM10_START_YOUR_BUSINESS_PLAN);
 
     // Scale Your Business plans
-    String HELIUM10_SCALE_YOUR_BUSINESS_PLAN = "Helium10_Scale_Your_Business";
-    String HELIUM10_SCALE_YOUR_BUSINESS_QUARTER_PLAN = "Helium10_Scale_Your_Business_Quarter";
-    String HELIUM10_SCALE_YOUR_BUSINESS_ANNUAL_PLAN = "Helium10_Scale_Your_Business_Annual";
+    public static String HELIUM10_SCALE_YOUR_BUSINESS_PLAN = "Helium10_Scale_Your_Business";
+    public static String HELIUM10_SCALE_YOUR_BUSINESS_QUARTER_PLAN = "Helium10_Scale_Your_Business_Quarter";
+    public static String HELIUM10_SCALE_YOUR_BUSINESS_ANNUAL_PLAN = "Helium10_Scale_Your_Business_Annual";
     List<String> HELIUM10_SCALE_YOUR_BUSINESS_PLANS = Arrays.asList(
             HELIUM10_SCALE_YOUR_BUSINESS_PLAN,
             HELIUM10_SCALE_YOUR_BUSINESS_QUARTER_PLAN,
@@ -216,9 +230,9 @@ public interface PlansHelper {
             HELIUM10_SCALE_YOUR_BUSINESS_PLAN);
 
     // Supercharge Your Brand plans
-    String HELIUM10_SUPERCHARGE_YOUR_BRAND_PLAN = "Helium10_Supercharge_Your_Brand";
-    String HELIUM10_SUPERCHARGE_YOUR_BRAND_QUARTER_PLAN = "Helium10_Supercharge_Your_Brand_Quarter";
-    String HELIUM10_SUPERCHARGE_YOUR_BRAND_ANNUAL_PLAN = "Helium10_Supercharge_Your_Brand_Annual";
+    public static String HELIUM10_SUPERCHARGE_YOUR_BRAND_PLAN = "Helium10_Supercharge_Your_Brand";
+    public static String HELIUM10_SUPERCHARGE_YOUR_BRAND_QUARTER_PLAN = "Helium10_Supercharge_Your_Brand_Quarter";
+    public static String HELIUM10_SUPERCHARGE_YOUR_BRAND_ANNUAL_PLAN = "Helium10_Supercharge_Your_Brand_Annual";
     List<String> HELIUM10_SUPERCHARGE_YOUR_BRAND_PLANS = Arrays.asList(
             HELIUM10_SUPERCHARGE_YOUR_BRAND_PLAN,
             HELIUM10_SUPERCHARGE_YOUR_BRAND_QUARTER_PLAN,
@@ -227,8 +241,8 @@ public interface PlansHelper {
             HELIUM10_ELITE_PLANS.stream(),
             HELIUM10_SUPERCHARGE_YOUR_BRAND_PLANS.stream()).collect(Collectors.toList());
     // Bundles
-    String HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLE = "Helium10_Adtomic_And_Scale_Your_Business_Bundle";
-    String HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLE_ANNUAL = "Helium10_Adtomic_And_Scale_Your_Business_Bundle_Annual";
+    public static String HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLE = "Helium10_Adtomic_And_Scale_Your_Business_Bundle";
+    public static String HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLE_ANNUAL = "Helium10_Adtomic_And_Scale_Your_Business_Bundle_Annual";
     List<String> HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLES = Arrays.asList(
             HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLE,
             HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLE_ANNUAL);
@@ -1113,19 +1127,23 @@ public interface PlansHelper {
 //                === ArrayToolsHelper::arrayDiffRecursive($array2, $array1);
 //    }
 //
-//    /**
-//     * @param string $enterprisePlanId
-//     * @return false|mixed|string
-//     */
-//    public static function getBasePlanForEnterprisePlan(string $enterprisePlanId)
-//    {
-//        $cacheKey = "enterprise:base-plan:{$enterprisePlanId}";
-//        $basePlan = Yii::$app->cache->getOrSet($cacheKey, function () use ($enterprisePlanId) {
-//        return StripePlan::find()
-//                ->select(["basePlan"])
-//                ->where(["id" => $enterprisePlanId])
-//                ->scalar();
-//    }, 86400);
+
+    /**
+     *
+     */
+    public String getBasePlanForEnterprisePlan(String enterprisePlanId) {
+        String cacheKey = "enterprise:base-plan:" + enterprisePlanId;
+        String basePlan = redisService.getKey(cacheKey);
+        if (ObjectUtils.isNotEmpty(basePlan)) {
+            return basePlan;
+        }
+        StripePlan stripePlan = stripePlanMapper.selectOneById(enterprisePlanId);
+        if (ObjectUtils.isNotEmpty(stripePlan)) {
+            redisService.setIfAbsentWithExpire(cacheKey, stripePlan.getBasePlan(), 1, TimeUnit.DAYS);
+            return stripePlan.getBasePlan();
+        }
+        return null;
+    }
 //
 //        return $basePlan ?: static::HELIUM10_FREE_PLAN;
 //    }

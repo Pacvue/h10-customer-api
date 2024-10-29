@@ -8,6 +8,7 @@ import com.pacvue.h10.customer.api.domain.customer.mapper.AccountMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.StripeSubscriptionMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.User2AccountMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.UserMapper;
+import com.pacvue.h10.customer.api.domain.customer.service.AccountService;
 import com.pacvue.h10.customer.api.domain.customer.service.CustomerService;
 import com.pacvue.h10.customer.api.exception.BadRequestHttpException;
 import com.pacvue.h10.customer.api.exception.CustomErrorCode;
@@ -35,6 +36,8 @@ public class CustomerController {
     @Resource
     private CustomerService customerService;
     @Resource
+    private AccountService accountService;
+    @Resource
     private AccountMapper accountMapper;
     @Resource
     private StripeSubscriptionMapper stripeSubscriptionMapper;
@@ -45,7 +48,7 @@ public class CustomerController {
 
     @GetMapping("accounts")
     public Map<Long, AccountDto> accounts() {
-        List<AccountDto> accounts = customerService.getAccounts(1L);
+        List<AccountDto> accounts = accountService.getAccounts(1L);
         return accounts.stream().collect(Collectors.toMap(AccountDto::getAccountId, Function.identity()));
     }
 

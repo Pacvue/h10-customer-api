@@ -1,8 +1,29 @@
 package com.pacvue.h10.customer.api.domain.customer.service;
 
+import com.pacvue.h10.customer.dto.response.AccountDto;
+
+import java.util.List;
+
 public interface AccountService {
 
-    String getSubscriptionPlan(Boolean base, Boolean forceHeliumPlanId);
+    /**
+     * Returns a list of accounts available to the user
+     */
+    List<AccountDto> getAccounts(Long userId);
 
-    Boolean getIsSubscriber(Long accountId, String moduleId);
+    String getSubscriptionPlan(Boolean base, Boolean forceHeliumPlanId, Long id);
+
+    /**
+     * check if the account is subscribed to the module
+     */
+    Boolean getIsSubscriber(Long id, String moduleId);
+
+    /**
+     * check if the account has a paid subscription
+     */
+    Boolean hasPaidSubscription(String planId, String plansList, String moduleId);
+
+    Boolean hasToolAccess(String tool);
+
+    Boolean isToolIncludedInCurrentPlan(String tool);
 }
