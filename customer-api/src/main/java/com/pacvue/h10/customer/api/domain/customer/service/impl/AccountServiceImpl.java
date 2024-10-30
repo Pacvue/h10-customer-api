@@ -1,8 +1,6 @@
 package com.pacvue.h10.customer.api.domain.customer.service.impl;
 
-import cn.hutool.json.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mybatisflex.core.query.QueryWrapper;
 import com.pacvue.h10.customer.api.domain.customer.entity.StripeSubscription;
 import com.pacvue.h10.customer.api.domain.customer.mapper.StripeSubscriptionMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.User2AccountMapper;
@@ -22,8 +20,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.pacvue.h10.customer.api.domain.customer.entity.table.StripeSubscriptionTableDef.STRIPE_SUBSCRIPTION;
 
 @Service
 public class AccountServiceImpl implements AccountService {
