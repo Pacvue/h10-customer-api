@@ -1,5 +1,6 @@
 package com.pacvue.h10.customer.api.domain.customer.service;
 
+import com.pacvue.h10.customer.api.domain.customer.entity.StripeSubscription;
 import com.pacvue.h10.customer.dto.response.AccountDto;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface AccountService {
     /**
      * check if the account has a paid subscription
      */
-    Boolean hasPaidSubscription(String planId, String plansList, String moduleId);
+    Boolean hasPaidSubscription(StripeSubscription stripeSubscription, String moduleId);
 
     Boolean hasToolAccess(String tool);
 

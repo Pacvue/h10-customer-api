@@ -2,6 +2,7 @@ package com.pacvue.h10.customer.api.domain.customer.service;
 
 
 import com.pacvue.h10.customer.dto.response.AccountDto;
+import com.pacvue.h10.customer.dto.response.CustomerAdDataDto;
 import com.pacvue.h10.customer.dto.response.UpsellInfoDto;
 
 import java.util.List;
@@ -19,5 +20,5 @@ public interface CustomerService {
     /**
      * Get ADS-specific customer data
      */
-    void meAds();
+    CustomerAdDataDto meAds();
 }

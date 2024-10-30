@@ -1,5 +1,8 @@
 package com.pacvue.h10.customer.api.infrastructure.config;
 
+import com.pacvue.h10.customer.api.domain.customer.entity.Account;
+import com.pacvue.h10.customer.api.domain.customer.entity.StripeSubscription;
+import com.pacvue.h10.customer.api.domain.customer.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,14 +14,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class UserInfo implements Serializable {
 
-    private Long id;
+    private User user;
 
-    private Long accountId;
+    private Account account;
 
-    private String email;
-
-    public UserInfo(Long id, Long accountId) {
-        this.id = id;
-        this.accountId = accountId;
-    }
+    private StripeSubscription stripeSubscription;
 }

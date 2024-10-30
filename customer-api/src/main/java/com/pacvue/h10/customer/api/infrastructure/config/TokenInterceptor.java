@@ -2,9 +2,13 @@ package com.pacvue.h10.customer.api.infrastructure.config;
 
 import cn.hutool.crypto.digest.BCrypt;
 import com.mybatisflex.core.query.QueryWrapper;
+import com.pacvue.h10.customer.api.domain.customer.entity.Account;
 import com.pacvue.h10.customer.api.domain.customer.entity.AuthToken;
+import com.pacvue.h10.customer.api.domain.customer.entity.StripeSubscription;
 import com.pacvue.h10.customer.api.domain.customer.entity.User;
+import com.pacvue.h10.customer.api.domain.customer.mapper.AccountMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.AuthTokenMapper;
+import com.pacvue.h10.customer.api.domain.customer.mapper.StripeSubscriptionMapper;
 import com.pacvue.h10.customer.api.domain.customer.mapper.UserMapper;
 import com.pacvue.h10.customer.api.exception.AuthenticateException;
 import com.pacvue.h10.customer.api.exception.CustomErrorCode;
@@ -18,6 +22,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.Collections;
 
+import static com.pacvue.h10.customer.api.domain.customer.entity.table.StripeSubscriptionTableDef.STRIPE_SUBSCRIPTION;
+
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
 
@@ -29,6 +35,10 @@ public class TokenInterceptor implements HandlerInterceptor {
     private AuthTokenMapper authTokenMapper;
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private StripeSubscriptionMapper stripeSubscriptionMapper;
+    @Resource
+    private AccountMapper accountMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -51,6 +61,11 @@ public class TokenInterceptor implements HandlerInterceptor {
         return true; // 如果token有效，则继续执行请求
     }
 
+    /**
+     * 查询user/account/subscription 信息
+     *
+     * @param token token
+     */
     private UserInfo getUserInfo(String token) {
         String saltToken = BCrypt.hashpw(token, BLOWFISH_PREFIX + salt);
         QueryWrapper wrapper = QueryWrapper.create();
@@ -59,9 +74,12 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (ObjectUtils.isEmpty(authToken)) {
             return null;
         }
-        UserInfo userInfo = new UserInfo(authToken.getUserId(), authToken.getAccountId());
-        User user = userMapper.selectOneById(userInfo.getId());
-        userInfo.setEmail(user.getEmail());
-        return userInfo;
+        User user = userMapper.selectOneById(authToken.getUserId());
+        Account account = accountMapper.selectOneById(authToken.getAccountId());
+        if (ObjectUtils.isEmpty(user) || ObjectUtils.isEmpty(account)) {
+            return null;
+        }
+        StripeSubscription stripeSubscription = stripeSubscriptionMapper.selectOneByQuery(QueryWrapper.create().select().where(STRIPE_SUBSCRIPTION.ACCOUNT_ID.eq(account.getId())));
+        return new UserInfo(user, account, stripeSubscription);
     }
 }

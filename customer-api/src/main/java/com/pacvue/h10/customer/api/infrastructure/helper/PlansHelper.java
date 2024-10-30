@@ -95,18 +95,18 @@ public class PlansHelper {
     public static String HELIUM10_A_LA_CARTE_PROFITS_ANNUAL_390 = "Helium10_ALC_Profits_Annual_390";
 
     // Chinese plans
-    String HELIUM10_EXPLORER_CN = "Helium10_Explorer_Cn";
-    String HELIUM10_ENTREPRENEUR_CN = "Helium10_Entrepreneur_Cn";
-    String HELIUM10_PROFESSIONAL_CN = "Helium10_Professional_Cn";
-    String HELIUM10_EXPLORER_CN_ANNUAL = "Helium10_Explorer_Cn_Annual";
-    String HELIUM10_ENTREPRENEUR_CN_ANNUAL = "Helium10_Entrepreneur_Cn_Annual";
-    String HELIUM10_PROFESSIONAL_CN_ANNUAL = "Helium10_Professional_Cn_Annual";
+    public static String HELIUM10_EXPLORER_CN = "Helium10_Explorer_Cn";
+    public static String HELIUM10_ENTREPRENEUR_CN = "Helium10_Entrepreneur_Cn";
+    public static String HELIUM10_PROFESSIONAL_CN = "Helium10_Professional_Cn";
+    public static String HELIUM10_EXPLORER_CN_ANNUAL = "Helium10_Explorer_Cn_Annual";
+    public static String HELIUM10_ENTREPRENEUR_CN_ANNUAL = "Helium10_Entrepreneur_Cn_Annual";
+    public static String HELIUM10_PROFESSIONAL_CN_ANNUAL = "Helium10_Professional_Cn_Annual";
 
-    List<String> HELIUM10_A_LA_CARTE_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_A_LA_CARTE_PLANS = Arrays.asList(
             HELIUM10_A_LA_CARTE_PLAN,
             HELIUM10_A_LA_CARTE_ANNUAL_PLAN);
 
-    List<String> HELIUM10_STARTER_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_STARTER_PLANS = Arrays.asList(
             HELIUM10_STARTER_PLAN,
             HELIUM10_STARTER_39_PLAN,
             HELIUM10_STARTER_ANNUAL_PLAN,
@@ -116,17 +116,17 @@ public class PlansHelper {
             HELIUM10_EXPLORER_CN_ANNUAL
     );
 
-    List<String> HELIUM10_STARTER_ONLY_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_STARTER_ONLY_PLANS = Arrays.asList(
             HELIUM10_STARTER_PLAN,
             HELIUM10_STARTER_39_PLAN,
             HELIUM10_STARTER_ANNUAL_PLAN,
             HELIUM10_STARTER_ANNUAL_339_PLAN);
 
-    List<String> HELIUM10_PLATINUM_MONTHLY_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_PLATINUM_MONTHLY_PLANS = Arrays.asList(
             HELIUM10_PLATINUM_PLAN,
             HELIUM10_PLATINUM_99_PLAN);
 
-    List<String> HELIUM10_PLATINUM_ANNUAL_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_PLATINUM_ANNUAL_PLANS = Arrays.asList(
             HELIUM10_PLATINUM_ANNUAL_PLAN,
             HELIUM10_PLATINUM_ANNUAL_999_PLAN);
 
@@ -135,7 +135,7 @@ public class PlansHelper {
 //    HELIUM10_START_YOUR_BUSINESS_ANNUAL_PLAN,
 //    HELIUM10_ENTREPRENEUR_CN_ANNUAL);
 
-    List<String> HELIUM10_PLATINUM_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_PLATINUM_PLANS = Arrays.asList(
             HELIUM10_PLATINUM_PLAN,
             HELIUM10_PLATINUM_99_PLAN,
             HELIUM10_PLATINUM_ANNUAL_PLAN,
@@ -145,7 +145,7 @@ public class PlansHelper {
             HELIUM10_ENTREPRENEUR_CN_ANNUAL
     );
 
-    List<String> HELIUM10_PLATINUM_ONLY_PLANS = Stream.concat(
+    public static List<String> HELIUM10_PLATINUM_ONLY_PLANS = Stream.concat(
             Stream.of(HELIUM10_PLATINUM_PLAN, HELIUM10_PLATINUM_99_PLAN),
             HELIUM10_PLATINUM_ANNUAL_PLANS.stream()
     ).collect(Collectors.toList());
@@ -155,7 +155,7 @@ public class PlansHelper {
 //            HELIUM10_START_YOUR_BUSINESS_PLANS,
 //            ];
 
-    List<String> HELIUM10_DIAMOND_ANNUAL_PLANS = Arrays.asList(
+    public static List<String> HELIUM10_DIAMOND_ANNUAL_PLANS = Arrays.asList(
             HELIUM10_DIAMOND_ANNUAL_PLAN,
             HELIUM10_DIAMOND_ANNUAL_1999_PLAN,
             HELIUM10_DIAMOND_ANNUAL_2499_PLAN);
@@ -251,23 +251,19 @@ public class PlansHelper {
             HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLES.stream()).collect(Collectors.toList());
     List<String> HELIUM10_BUNDLE_PLANS = new ArrayList<>(HELIUM10_ADTOMIC_AND_SCALE_YOUR_BUSINESS_BUNDLES);
 
-    String PLANS_INTERVAL_MONTH = "month";
-    String PLANS_INTERVAL_YEAR = "year";
-
-    Integer PLANS_INTERVAL_COUNT_1 = 1;
-    Integer PLANS_INTERVAL_COUNT_3 = 3;
-
-    String STARTER_PLAN_RELEASE_DATE = "2021-04-06";
-
-    List<String> CHINESE_PLANS_COUNTRIES = Arrays.asList("CN", "TW", "HK");
-
-    String PLANS_PERIOD_MONTHLY = "monthly";
-    String PLANS_PERIOD_QUARTERLY = "quarterly";
-    String PLANS_PERIOD_ANNUAL = "annual";
-    String PLANS_PERIOD_HALF_YEAR = "half-year";
-    String PLANS_PERIOD_MONTHLY_SHORT = "mo";
-    String PLANS_PERIOD_QUARTERLY_SHORT = "qt";
-    String PLANS_PERIOD_ANNUAL_SHORT = "yr";
+    public static String PLANS_INTERVAL_MONTH = "month";
+    public static String PLANS_INTERVAL_YEAR = "year";
+    public static Integer PLANS_INTERVAL_COUNT_1 = 1;
+    public static Integer PLANS_INTERVAL_COUNT_3 = 3;
+    public static String STARTER_PLAN_RELEASE_DATE = "2021-04-06";
+    public static List<String> CHINESE_PLANS_COUNTRIES = Arrays.asList("CN", "TW", "HK");
+    public static String PLANS_PERIOD_MONTHLY = "monthly";
+    public static String PLANS_PERIOD_QUARTERLY = "quarterly";
+    public static String PLANS_PERIOD_ANNUAL = "annual";
+    public static String PLANS_PERIOD_HALF_YEAR = "half-year";
+    public static String PLANS_PERIOD_MONTHLY_SHORT = "mo";
+    public static String PLANS_PERIOD_QUARTERLY_SHORT = "qt";
+    public static String PLANS_PERIOD_ANNUAL_SHORT = "yr";
 
     List<String> PLANS_PERIODS = Arrays.asList(
             PLANS_PERIOD_MONTHLY,
@@ -1142,11 +1138,8 @@ public class PlansHelper {
             redisService.setIfAbsentWithExpire(cacheKey, stripePlan.getBasePlan(), 1, TimeUnit.DAYS);
             return stripePlan.getBasePlan();
         }
-        return null;
+        return PlansHelper.HELIUM10_FREE_PLAN;
     }
-//
-//        return $basePlan ?: static::HELIUM10_FREE_PLAN;
-//    }
 //
 //    /**
 //     * Checks if there should be used Chinese plans depending on the user"s geolocation or specified country ISO code
