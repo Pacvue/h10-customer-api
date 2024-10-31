@@ -9,7 +9,7 @@ permissions:
 
 env:
   productline: helium10             # 对应helm中的产品线
-  repository: h10-gateway        # 对应helm中的存储库
+  repository: h10-customer-api      # 对应helm中的存储库
   devops_member: fanyanjie-pacvue, xujunqiang-pacvue, xiayinhai-pacvue
   developer_member: zhoujunchen-pacvue, wenyu-pacvue        # 配置哪些人有生产发版权限,字符串要严格按照上面的格式
 
@@ -87,14 +87,13 @@ jobs:
           print(cmd)
           os.system(cmd)
 
-          # 把profile做成json以适配矩阵  https://github.com/orgs/community/discussions/45420
           matrix = {}
+          matrix['module'] = module.replace(' ','').split(',')
           matrix['profile'] = profile.replace(' ','').split(',')
           cmd = f'echo "matrix={str(matrix)}" >> $GITHUB_OUTPUT'
           print(cmd)
           os.system(cmd)
 
-          # 判断人员有没有权限发版
           devops_member = '${{ env.devops_member }}'.replace(' ','').split(',')
           developer_member = '${{ env.developer_member }}'.replace(' ','').split(',')
           member = devops_member + developer_member
@@ -103,7 +102,7 @@ jobs:
                   pass
               else:
                   print('================================')
-                  print(f'当前人员没有生产环境的发版权限')
+                  print(f'current user no permission to release versions')
                   sys.exit(1)
 
   cicd:
@@ -115,12 +114,14 @@ jobs:
     secrets: inherit # 隐式传递secret
     with:
       autotest_enabled: ${{ inputs.autotest_enabled }}
+      module: ${{ matrix.module }}
       profile: ${{ matrix.profile }}
       productline: ${{ needs.init.outputs.productline }}
       repository: ${{ needs.init.outputs.repository }}
       branch: ${{ needs.init.outputs.branch }}
       languague_version: ${{ inputs.language_version }}
+      maven_command: mvn -B -f src/pom.xml -Dfile.encoding=UTF-8 clean verify -U -pl ${{ matrix.module }} -am -Dmaven.test.skip=true
       dockerfile: |
         FROM amazoncorretto:${{ inputs.language_version }}
         WORKDIR /app
-        COPY src/target/*.jar app.jar
+        COPY src/${{ matrix.module }}/target/*.jar app.jar
