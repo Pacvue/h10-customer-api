@@ -57,8 +57,7 @@ public class CustomerController {
      */
     @GetMapping("me/ads")
     public ResponseData<CustomerAdDataDto> meAds() {
-        CustomerAdDataDto dataDto = new CustomerAdDataDto();
-        customerService.meAds();
+        CustomerAdDataDto dataDto = customerService.meAds();
         return ResponseData.success(dataDto);
     }
 

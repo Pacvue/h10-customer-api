@@ -3,10 +3,68 @@ package com.pacvue.h10.customer.api.infrastructure.helper;
 public class ToolsHelper {
 
     public static String AI_ADVERTISING_TOOL_ID = "ai-advertising";
-
     public static String ADTOMIC_TOOL_ID = "ppc";
-
-    public static String CATEGORY_ADVERTISING = "advertising";
-
     public static String DAYPARTING_TOOL_ID = "dayparting";
+    public static String AD_SPEND_LIMITS_TOOL_ID = "ad-spend-limits";
+    public static String KEYWORD_RECOMMENDATIONS_TOOL_ID = "keyword-recommendations";
+    public static String RULE_BASED_AUTOMATION_TOOL_ID = "rule-based-automation";
+    public static String REVIEW_ANALYZER_PRO_TOOL_ID = "rsa";
+    public static String CONTROL_CENTER_ASINS_TOOL_ID = "control-center";
+    public static String CONTROL_CENTER_INSIGHTS_TOOL_ID = "control-center-insights";
+    public static String CONTROL_CENTER_DASHBOARD_TOOL_ID = "control-center-dashboard";
+    public static String MT360_TOOL_ID = "mt360";
+    public static String KEYWORD_TRACKER_TOOL_ID = "keywordtracker";
+    public static String KEYWORD_TRACKER_WALMART_TOOL_ID = "keywordtracker-walmart";
+    public static String LISTING_ANALYZER_TOOL_ID = "listing-analyzer";
+    public static String LISTING_BUILDER_TOOL_ID = "listing-builder";
+    public static String KEYWORD_TRACKER_BOOSTS_TOOL_ID = "keywordtracker-boosts";
+    public static String KEYWORD_TRACKER_WALMART_BOOSTS_TOOL_ID = "keywordtracker-walmart-boosts";
+    public static String ELITE_TOOL_ID = "elite-access";
+    public static String BUSINESS_VALUATION_TOOL_ID = "business-valuation";
+    public static String ADVANCED_BRAND_ANALYTICS_TOOL_ID = "overview-advanced-brand-analytics";
+    public static String OVERVIEW_LISTING_OPTIMIZATION_TOOL_ID = "overview-listing-optimization";
+    public static String PROFITS_TOOL_ID = "profits";
+    public static String REFUND_GENIE_TOOL_ID = "refundgenie";
+    public static String PROFITS_WALMART_TOOL_ID = "profits-walmart";
+    public static String FREEDOM_TICKET_TOOL_ID = "freedom-ticket";
+    public static String FREEDOM_TICKET_4_TOOL_ID = "freedom-ticket-4-0";
+    public static String FOLLOW_UP_TOOL_ID = "followup";
+    public static String SEARCH_EXPANDER_TOOL_ID = "search-expander";
+    public static String XRAY_TOOL_ID = "xray";
+    public static String XRAY_WALMART_TOOL_ID = "xray-walmart";
+    public static String XRAY_API_TOOL_ID = "xray-api";
+    public static String CEREBRO_TOOL_ID = "cerebro";
+    public static String CEREBRO_WALMART_TOOL_ID = "cerebro-walmart";
+    public static String BLACKBOX_TOOL_ID = "blackbox";
+    public static String BLACKBOX_ABA_TOOL_ID = "blackbox-aba";
+    public static String REVIEW_INSIGHTS_TOOL_ID = "review-insights";
+    public static String CHROME_EXTENSION_TOOL_ID = "chrome-extension";
+    public static String LISTING_BUILDER_GENERATOR = "listing-builder-generator";
+    public static String LISTING_BUILDER_LISTINGS = "listing-builder-listings";
+    public static String LISTING_BUILDER_VERSIONS = "listing-builder-versions";
+    public static String LISTING_BUILDER_COMPETITORS = "listing-builder-competitors";
+    public static String LISTING_BUILDER_IMAGE_AI = "listing-builder-image-ai";
+    public static String KEYWORD_SALES = "keyword-sales";
+    public static String SMB_REFUND_SERVICE_TOOL_ID = "smb-refund-service";
+    public static String SMB_REFUND_SERVICE_ACCESS = "smb-refund-service-access";
+    public static String CATEGORY_PRODUCT_RESEARCH = "productResearch";
+    public static String CATEGORY_KEYWORD_RESEARCH = "keywordResearch";
+    public static String CATEGORY_LISTING_OPTIMIZATION = "listingOptimization";
+    public static String CATEGORY_OPERATIONS = "operations";
+    public static String CATEGORY_PARTNER = "partner";
+    public static String CATEGORY_ANALYTICS = "analytics";
+    public static String CATEGORY_MARKETING = "marketing";
+    public static String CATEGORY_LEARNING = "learning";
+    public static String CATEGORY_ADDITIONAL_PERKS = "additionalPerks";
+    public static String CATEGORY_TRAINING_AND_COMMUNITY_ACCESS = "training";
+    public static String CATEGORY_OVERVIEW = "overview";
+    public static String CATEGORY_INSIGHTS_DASHBOARD = "insightsDashboard";
+    public static String CATEGORY_ADD_ONS = "addOns";
+    public static String CATEGORY_ADVERTISING = "advertising";
+    public static String IDEAS_PRODUCTS_TOOL_ID = "ideasProducts";
+    public static String IDEAS_KEYWORDS_TOOL_ID = "ideasKeywords";
+    public static String IDEAS_TOOL_ID = "ideas";
+    public static String IDEAS_PREDICTED_MARKET_AI_TOOL_ID = "ideas-predicted-market-ai";
+    public static String IDEAS_SUMMARY_AI_TOOL_ID = "ideas-summary-ai";
+
 }

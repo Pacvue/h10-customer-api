@@ -2,6 +2,7 @@ package com.pacvue.h10.customer.api.infrastructure.enums;
 
 import lombok.Getter;
 
+@Getter
 public enum User2AccountStatus {
 
     ACTIVE(1),
@@ -10,7 +11,6 @@ public enum User2AccountStatus {
 
     DELETED(3);
 
-    @Getter
     private final Integer status;
 
     User2AccountStatus(int status) {

@@ -6,7 +6,9 @@ import com.pacvue.h10.customer.api.infrastructure.config.UserContext;
 import com.pacvue.h10.customer.api.infrastructure.helper.PlansHelper;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StripeSubscriptionServiceImpl implements StripeSubscriptionService {
 
     @Resource
