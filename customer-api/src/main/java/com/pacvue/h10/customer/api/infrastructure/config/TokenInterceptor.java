@@ -46,6 +46,16 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (true) {
             return true;
         }
+        // 从请求参数中取得userId和accountId
+        String userId = request.getHeader("x-h10-user_id");
+        String accountId = request.getHeader("x-h10-account_id");
+        if (ObjectUtils.isNotEmpty(userId) && ObjectUtils.isNotEmpty(accountId)) {
+            UserInfo userInfo = getUserInfo(Long.valueOf(userId), Long.valueOf(accountId));
+            if (ObjectUtils.isNotEmpty(userInfo)) {
+                UserContext.setUser(userInfo);
+                return true;
+            }
+        }
         // 从HTTP头信息中取得token
         String token = request.getHeader("Authorization");
         // 实现token验证的逻辑
@@ -53,12 +63,12 @@ public class TokenInterceptor implements HandlerInterceptor {
             throw new AuthenticateException(new CustomErrorCode(0, "Error occurred", "Your request was made with invalid credentials.", Collections.singletonList("user/signin")));
         }
         // 验证token
-        UserInfo userInfo = getUserInfo(token.substring("Bearer ".length()));
+        UserInfo userInfo = getUserInfoFromToken(token.substring("Bearer ".length()));
         if (ObjectUtils.isEmpty(userInfo)) {
             throw new AuthenticateException(new CustomErrorCode(0, "Error occurred", "Your request was made with invalid credentials.", Collections.singletonList("user/signin")));
         }
         UserContext.setUser(userInfo);
-        return true; // 如果token有效，则继续执行请求
+        return true;
     }
 
     /**
@@ -66,7 +76,7 @@ public class TokenInterceptor implements HandlerInterceptor {
      *
      * @param token token
      */
-    private UserInfo getUserInfo(String token) {
+    private UserInfo getUserInfoFromToken(String token) {
         String saltToken = BCrypt.hashpw(token, BLOWFISH_PREFIX + salt);
         QueryWrapper wrapper = QueryWrapper.create();
         wrapper.eq(AuthToken::getToken, saltToken);
@@ -74,8 +84,12 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (ObjectUtils.isEmpty(authToken)) {
             return null;
         }
-        User user = userMapper.selectOneById(authToken.getUserId());
-        Account account = accountMapper.selectOneById(authToken.getAccountId());
+        return getUserInfo(authToken.getUserId(), authToken.getAccountId());
+    }
+
+    private UserInfo getUserInfo(Long userId, Long accountId) {
+        User user = userMapper.selectOneById(userId);
+        Account account = accountMapper.selectOneById(accountId);
         if (ObjectUtils.isEmpty(user) || ObjectUtils.isEmpty(account)) {
             return null;
         }

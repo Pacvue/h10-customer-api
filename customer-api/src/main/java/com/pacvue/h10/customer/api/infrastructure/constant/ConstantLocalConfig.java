@@ -1,4 +1,4 @@
-package com.pacvue.h10.customer.api.infrastructure.config;
+package com.pacvue.h10.customer.api.infrastructure.constant;
 
 import org.yaml.snakeyaml.Yaml;
 
