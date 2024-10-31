@@ -18,7 +18,7 @@ public class User implements Serializable {
      * 
      */
     @Id(value = "id")
-    private Long id;
+    private Integer id;
 
     /**
      * 

@@ -1,5 +1,6 @@
 package com.pacvue.h10.customer.dto.response;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,13 +11,14 @@ import java.util.List;
  *
  */
 @Data
+@Builder
 public class CustomerAdDataDto implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     private Integer userId;
 
-    private Long accountId;
+    private Integer accountId;
 
     private String email;
 

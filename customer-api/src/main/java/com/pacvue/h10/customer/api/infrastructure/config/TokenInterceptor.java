@@ -47,7 +47,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         String userId = request.getHeader("x-h10-user_id");
         String accountId = request.getHeader("x-h10-account_id");
         if (ObjectUtils.isNotEmpty(userId) && ObjectUtils.isNotEmpty(accountId)) {
-            UserInfo userInfo = getUserInfo(Long.valueOf(userId), Long.valueOf(accountId));
+            UserInfo userInfo = getUserInfo(Integer.valueOf(userId), Integer.valueOf(accountId));
             if (ObjectUtils.isNotEmpty(userInfo)) {
                 UserContext.setUser(userInfo);
                 return true;
@@ -84,7 +84,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         return getUserInfo(authToken.getUserId(), authToken.getAccountId());
     }
 
-    private UserInfo getUserInfo(Long userId, Long accountId) {
+    private UserInfo getUserInfo(Integer userId, Integer accountId) {
         User user = userMapper.selectOneById(userId);
         Account account = accountMapper.selectOneById(accountId);
         if (ObjectUtils.isEmpty(user) || ObjectUtils.isEmpty(account)) {

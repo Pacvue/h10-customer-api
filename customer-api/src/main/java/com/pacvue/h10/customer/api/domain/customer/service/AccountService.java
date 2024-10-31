@@ -10,14 +10,14 @@ public interface AccountService {
     /**
      * Returns a list of accounts available to the user
      */
-    List<AccountDto> getAccounts(Long userId);
+    List<AccountDto> getAccounts(Integer userId);
 
-    String getSubscriptionPlan(Boolean base, Boolean forceHeliumPlanId, Long id);
+    String getSubscriptionPlan(Boolean base, Boolean forceHeliumPlanId, Integer id);
 
     /**
      * check if the account is subscribed to the module
      */
-    Boolean getIsSubscriber(Long id, String moduleId);
+    Boolean getIsSubscriber(Integer id, String moduleId);
 
     /**
      * check if the account has a paid subscription

@@ -31,7 +31,7 @@ public class StripeSubscription implements Serializable {
      *
      */
     @Column(value = "Account_id")
-    private Long accountId;
+    private Integer accountId;
 
     /**
      *

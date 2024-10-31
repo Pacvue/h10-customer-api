@@ -32,12 +32,12 @@ public class AccountServiceImpl implements AccountService {
     private StripeSubscriptionService stripeSubscriptionService;
 
     @Override
-    public List<AccountDto> getAccounts(Long userId) {
+    public List<AccountDto> getAccounts(Integer userId) {
         return user2AccountMapper.getAccountsByUserId(userId);
     }
 
     @Override
-    public String getSubscriptionPlan(Boolean base, Boolean forceHeliumPlanId, Long id) {
+    public String getSubscriptionPlan(Boolean base, Boolean forceHeliumPlanId, Integer id) {
         if (getIsSubscriber(id, null)) {
             return PlansHelper.HELIUM10_FREE_PLAN;
         }
@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Boolean getIsSubscriber(Long accountId, String moduleId) {
+    public Boolean getIsSubscriber(Integer accountId, String moduleId) {
         StripeSubscription stripeSubscription = UserContext.getUser().getStripeSubscription();
 
         if (ObjectUtils.isEmpty(stripeSubscription)) {

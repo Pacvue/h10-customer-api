@@ -45,10 +45,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerAdDataDto meAds() {
-        CustomerAdDataDto dataDto = new CustomerAdDataDto();
         UserInfo userInfo = UserContext.getUser();
         User user = userInfo.getUser();
         Account account = userInfo.getAccount();
+        String subscriptionPlan = accountService.getSubscriptionPlan(true, false, account.getId());
+
+
         StripeSubscription stripeSubscription = userInfo.getStripeSubscription();
 
 //        List<SpApiAuthTokenOfAccount> spApiAuthTokenOfAccounts = spApiAuthTokenOfAccountMapper.
@@ -56,12 +58,19 @@ public class CustomerServiceImpl implements CustomerService {
 //
 //        CustomerAdDataDto.Subscription subscription = new CustomerAdDataDto.Subscription();
 //        subscription.setCoupon(Optional.ofNullable(stripeSubscription).map(StripeSubscription::getCouponId).orElse(null));
-//        String subscriptionPlan = accountService.getSubscriptionPlan(true, false, account.getId());
 //        subscription.setPlan(subscriptionPlan);
 //        AddonStateEnum addonStateEnum = addonsHelper.checkAddonState(ToolsHelper.ADTOMIC_TOOL_ID);
 //
 //        Boolean hasToolAccess = accountService.hasToolAccess(ToolsHelper.ADTOMIC_TOOL_ID);
 //        getInvoices();
+        CustomerAdDataDto dataDto = CustomerAdDataDto.builder()
+                .id(account.getId())
+                .userId(user.getId())
+                .accountId(account.getId())
+                .email(user.getEmail())
+                .full_name(user.getFullName())
+                .plan(subscriptionPlan)
+                .build();
 
         dataDto.setId(user.getId());
         dataDto.setEmail(user.getEmail());

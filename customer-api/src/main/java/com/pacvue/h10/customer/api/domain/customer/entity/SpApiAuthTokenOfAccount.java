@@ -7,6 +7,7 @@ import com.mybatisflex.annotation.Table;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * 实体类。
@@ -22,7 +23,7 @@ public class SpApiAuthTokenOfAccount {
     private Integer id;
 
     @Column(value = "Account_id")
-    private Long accountId;
+    private Integer accountId;
 
     @Column(value = "sellerId")
     private String sellerId;
@@ -49,10 +50,10 @@ public class SpApiAuthTokenOfAccount {
     private String alias;
 
     @Column(value = "disabledAt")
-    private Timestamp disabledAt;
+    private Instant disabledAt;
 
     @Column(value = "createdAt")
-    private Timestamp createdAt;
+    private Instant createdAt;
 
     @Column(value = "isVendorCentralToken")
     private Boolean isVendorCentralToken;

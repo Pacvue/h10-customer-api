@@ -26,7 +26,7 @@ public class AuthToken implements Serializable {
      * 
      */
     @Column(value = "Account_id")
-    private Long accountId;
+    private Integer accountId;
 
     /**
      * 
@@ -74,7 +74,7 @@ public class AuthToken implements Serializable {
      * 
      */
     @Column(value = "user_id")
-    private Long userId;
+    private Integer userId;
 
     /**
      * ID unique for user session

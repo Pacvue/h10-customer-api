@@ -4,6 +4,7 @@ import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
 import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import lombok.Data;
 
 import java.lang.Boolean;
 import java.lang.Object;
@@ -17,6 +18,7 @@ import java.lang.Integer;
  * @since 1.0
  */
 @Table(value = "StripePlan")
+@Data
 public class StripePlan {
 
     @Id(keyType = KeyType.None)
@@ -78,165 +80,4 @@ public class StripePlan {
 
     @Column(value = "extendedLimits")
     private Object extendedLimits;
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
-    public Integer getCreated() {
-        return created;
-    }
-
-    public void setCreated(Integer created) {
-        this.created = created;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public Integer getInterval() {
-        return interval;
-    }
-
-    public void setInterval(Integer interval) {
-        this.interval = interval;
-    }
-
-    public Integer getIntervalCount() {
-        return intervalCount;
-    }
-
-    public void setIntervalCount(Integer intervalCount) {
-        this.intervalCount = intervalCount;
-    }
-
-    public Boolean getLivemode() {
-        return livemode;
-    }
-
-    public void setLivemode(Boolean livemode) {
-        this.livemode = livemode;
-    }
-
-    public String getMetadata() {
-        return metadata;
-    }
-
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStatementDescriptor() {
-        return statementDescriptor;
-    }
-
-    public void setStatementDescriptor(String statementDescriptor) {
-        this.statementDescriptor = statementDescriptor;
-    }
-
-    public Integer getTrialPeriodDays() {
-        return trialPeriodDays;
-    }
-
-    public void setTrialPeriodDays(Integer trialPeriodDays) {
-        this.trialPeriodDays = trialPeriodDays;
-    }
-
-    public Integer getAmountCredits() {
-        return amountCredits;
-    }
-
-    public void setAmountCredits(Integer amountCredits) {
-        this.amountCredits = amountCredits;
-    }
-
-    public Integer getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Integer updated) {
-        this.updated = updated;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getBillingScheme() {
-        return billingScheme;
-    }
-
-    public void setBillingScheme(String billingScheme) {
-        this.billingScheme = billingScheme;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getProduct() {
-        return product;
-    }
-
-    public void setProduct(String product) {
-        this.product = product;
-    }
-
-    public String getBasePlan() {
-        return basePlan;
-    }
-
-    public void setBasePlan(String basePlan) {
-        this.basePlan = basePlan;
-    }
-
-    public Object getExtendedLimits() {
-        return extendedLimits;
-    }
-
-    public void setExtendedLimits(Object extendedLimits) {
-        this.extendedLimits = extendedLimits;
-    }
 }

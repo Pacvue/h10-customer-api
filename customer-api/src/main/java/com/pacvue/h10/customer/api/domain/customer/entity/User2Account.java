@@ -18,13 +18,13 @@ public class User2Account implements Serializable {
      * 
      */
     @Column(value = "user_id")
-    private Long userId;
+    private Integer userId;
 
     /**
      * 
      */
     @Column(value = "Account_id")
-    private Long accountId;
+    private Integer accountId;
 
     /**
      * 
@@ -36,7 +36,7 @@ public class User2Account implements Serializable {
      * 
      */
     @Column(value = "permissions")
-    private String permissions;
+    private Object permissions;
 
     /**
      * 
