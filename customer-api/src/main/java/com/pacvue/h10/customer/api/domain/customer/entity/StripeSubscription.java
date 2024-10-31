@@ -2,23 +2,33 @@ package com.pacvue.h10.customer.api.domain.customer.entity;
 
 import com.mybatisflex.annotation.Column;
 import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.KeyType;
 import com.mybatisflex.annotation.Table;
+import com.mybatisflex.core.handler.Fastjson2TypeHandler;
+import com.mybatisflex.core.handler.JacksonTypeHandler;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.apache.ibatis.type.ArrayTypeHandler;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @TableName StripeSubscription
  */
 @Table(value = "StripeSubscription")
 @Data
+@NoArgsConstructor
 @Builder
+@AllArgsConstructor
 public class StripeSubscription implements Serializable {
     /**
      *
      */
-    @Id(value = "id")
+    @Id(value = "id", keyType = KeyType.Auto)
     private Long id;
 
     /**
@@ -96,8 +106,8 @@ public class StripeSubscription implements Serializable {
     /**
      *
      */
-    @Column(value = "plansList")
-    private String plansList;
+    @Column(value = "plansList", typeHandler = Fastjson2TypeHandler.class)
+    private List<String> plansList;
 
     /**
      *
@@ -180,6 +190,6 @@ public class StripeSubscription implements Serializable {
     /**
      *
      */
-    @Column(value = "addonsList")
-    private String addonsList;
+    @Column(value = "addonsList", typeHandler = Fastjson2TypeHandler.class)
+    private Map<String, Object> addonsList;
 }

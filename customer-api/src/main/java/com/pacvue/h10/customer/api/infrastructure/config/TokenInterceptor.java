@@ -90,7 +90,7 @@ public class TokenInterceptor implements HandlerInterceptor {
         if (ObjectUtils.isEmpty(user) || ObjectUtils.isEmpty(account)) {
             return null;
         }
-        StripeSubscription stripeSubscription = stripeSubscriptionMapper.selectOneByQuery(QueryWrapper.create().select().where(STRIPE_SUBSCRIPTION.ACCOUNT_ID.eq(account.getId())));
-        return new UserInfo(user, account, stripeSubscription);
+//        StripeSubscription stripeSubscription = stripeSubscriptionMapper.selectOneByQuery(QueryWrapper.create().select().where(STRIPE_SUBSCRIPTION.ACCOUNT_ID.eq(account.getId())));
+        return new UserInfo(user, account, null);
     }
 }

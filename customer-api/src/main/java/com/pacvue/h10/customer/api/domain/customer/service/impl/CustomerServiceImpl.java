@@ -5,19 +5,24 @@ import com.pacvue.h10.customer.api.domain.customer.entity.*;
 import com.pacvue.h10.customer.api.domain.customer.mapper.*;
 import com.pacvue.h10.customer.api.domain.customer.service.AccountService;
 import com.pacvue.h10.customer.api.domain.customer.service.CustomerService;
+import com.pacvue.h10.customer.api.domain.customer.service.PpcTokenOfAccountService;
 import com.pacvue.h10.customer.api.infrastructure.config.UserContext;
 import com.pacvue.h10.customer.api.infrastructure.config.UserInfo;
 import com.pacvue.h10.customer.api.infrastructure.enums.AddonStateEnum;
+import com.pacvue.h10.customer.api.infrastructure.enums.PpcTokenOfAccountEnum;
 import com.pacvue.h10.customer.api.infrastructure.helper.AddonsHelper;
 import com.pacvue.h10.customer.api.infrastructure.helper.ToolsHelper;
 import com.pacvue.h10.customer.dto.response.CustomerAdDataDto;
 import com.pacvue.h10.customer.dto.response.UpsellInfoDto;
 import jakarta.annotation.Resource;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static com.pacvue.h10.customer.api.domain.customer.entity.table.PpcTokenOfAccountTableDef.PPC_TOKEN_OF_ACCOUNT;
 import static com.pacvue.h10.customer.api.domain.customer.entity.table.SpApiAuthTokenOfAccountTableDef.SP_API_AUTH_TOKEN_OF_ACCOUNT;
 
 
@@ -36,6 +41,10 @@ public class CustomerServiceImpl implements CustomerService {
     private AccountService accountService;
     @Resource
     private AddonsHelper addonsHelper;
+    @Resource
+    private PpcTokenOfAccountMapper ppcTokenOfAccountMapper;
+    @Resource
+    private PpcTokenOfAccountService ppcTokenOfAccountService;
 
     @Override
     public UpsellInfoDto upsellInfo(Long accountId, String moduleId, List<String> suggestedPlans) {
@@ -70,6 +79,11 @@ public class CustomerServiceImpl implements CustomerService {
                 .email(user.getEmail())
                 .full_name(user.getFullName())
                 .plan(subscriptionPlan)
+                .ppc_enabled(isPPCEnabled(account.getId(), account.getPpcEnabled()))
+                .has_ppc_token(ppcTokenOfAccountService.doesAccountHavePpcToken(account.getId()))
+                .ppc_enabled_raw(account.getPpcEnabled())
+                .adtomic_enabled(account.getAdtomicEnabled())
+
                 .build();
 
         dataDto.setId(user.getId());
@@ -78,6 +92,16 @@ public class CustomerServiceImpl implements CustomerService {
 //        dataDto.setSubscription(subscription);
 //        dataDto.setPlan(subscriptionPlan);
         return dataDto;
+    }
+
+    private Boolean isPPCEnabled(Integer accountId, Boolean ppcEnabled) {
+        List<Integer> validStatuses = Arrays.asList(
+                PpcTokenOfAccountEnum.STATUS_WAITING.getStatus(),
+                PpcTokenOfAccountEnum.STATUS_READY.getStatus(),
+                PpcTokenOfAccountEnum.STATUS_DEMO.getStatus());
+        PpcTokenOfAccount ppcTokenOfAccount = ppcTokenOfAccountMapper.selectOneByQuery(QueryWrapper.create()
+                .where(PPC_TOKEN_OF_ACCOUNT.ACCOUNT_ID.eq(accountId).and(PPC_TOKEN_OF_ACCOUNT.STATUS.in(validStatuses))));
+        return ObjectUtils.isNotEmpty(ppcTokenOfAccount) && ppcEnabled;
     }
 
     private void getInvoices() {
