@@ -23,6 +23,12 @@ on:
         options:
           - master
           - staging
+      module:
+        description: 'Module'
+        required: true
+        type: choice
+        options:
+          - customer-api-web
       profile:
         description: 'Choice env to deploy'
         required: true
