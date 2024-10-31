@@ -43,9 +43,6 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
-        if (true) {
-            return true;
-        }
         // 从请求参数中取得userId和accountId
         String userId = request.getHeader("x-h10-user_id");
         String accountId = request.getHeader("x-h10-account_id");

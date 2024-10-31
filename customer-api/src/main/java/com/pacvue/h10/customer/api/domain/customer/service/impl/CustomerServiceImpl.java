@@ -51,23 +51,23 @@ public class CustomerServiceImpl implements CustomerService {
         Account account = userInfo.getAccount();
         StripeSubscription stripeSubscription = userInfo.getStripeSubscription();
 
-        List<SpApiAuthTokenOfAccount> spApiAuthTokenOfAccounts = spApiAuthTokenOfAccountMapper.
-                selectListByQuery(QueryWrapper.create().select().where(SP_API_AUTH_TOKEN_OF_ACCOUNT.ACCOUNT_ID.eq(account.getId())));
-
-        CustomerAdDataDto.Subscription subscription = new CustomerAdDataDto.Subscription();
-        subscription.setCoupon(Optional.ofNullable(stripeSubscription).map(StripeSubscription::getCouponId).orElse(null));
-        String subscriptionPlan = accountService.getSubscriptionPlan(true, false, account.getId());
-        subscription.setPlan(subscriptionPlan);
-        AddonStateEnum addonStateEnum = addonsHelper.checkAddonState(ToolsHelper.ADTOMIC_TOOL_ID);
-
-        Boolean hasToolAccess = accountService.hasToolAccess(ToolsHelper.ADTOMIC_TOOL_ID);
-        getInvoices();
+//        List<SpApiAuthTokenOfAccount> spApiAuthTokenOfAccounts = spApiAuthTokenOfAccountMapper.
+//                selectListByQuery(QueryWrapper.create().select().where(SP_API_AUTH_TOKEN_OF_ACCOUNT.ACCOUNT_ID.eq(account.getId())));
+//
+//        CustomerAdDataDto.Subscription subscription = new CustomerAdDataDto.Subscription();
+//        subscription.setCoupon(Optional.ofNullable(stripeSubscription).map(StripeSubscription::getCouponId).orElse(null));
+//        String subscriptionPlan = accountService.getSubscriptionPlan(true, false, account.getId());
+//        subscription.setPlan(subscriptionPlan);
+//        AddonStateEnum addonStateEnum = addonsHelper.checkAddonState(ToolsHelper.ADTOMIC_TOOL_ID);
+//
+//        Boolean hasToolAccess = accountService.hasToolAccess(ToolsHelper.ADTOMIC_TOOL_ID);
+//        getInvoices();
 
         dataDto.setId(user.getId());
         dataDto.setEmail(user.getEmail());
         dataDto.setAccountId(account.getId());
-        dataDto.setSubscription(subscription);
-        dataDto.setPlan(subscriptionPlan);
+//        dataDto.setSubscription(subscription);
+//        dataDto.setPlan(subscriptionPlan);
         return dataDto;
     }
 
