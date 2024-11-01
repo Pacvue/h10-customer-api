@@ -28,7 +28,7 @@ on:
         required: true
         type: choice
         options:
-          - customer-api-web
+          - customer-api
       profile:
         description: 'Choice env to deploy'
         required: true
