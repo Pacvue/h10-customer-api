@@ -1,7 +1,6 @@
+name: H10 Customer API Deploy
 
-name: H10 Deploy
-
-run-name: "[Branch=${{ inputs.branch }}/${{ inputs.branch_manually }}] [Env=${{ inputs.profile }}]"
+run-name: "[Env=${{ inputs.profile }}] [Module=${{ inputs.module }}] [Ref=${{ inputs.branch }}/${{ inputs.branch_manually }}]"
 
 # These permissions are needed to interact with GitHub's OIDC Token endpoint.
 permissions:
@@ -9,16 +8,16 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 env:
-  productline: helium10             # 对应helm中的产品线
-  repository: h10-customer-api      # 对应helm中的存储库
+  productline: helium10
+  repository: h10-customer-api 
   devops_member: fanyanjie-pacvue, xujunqiang-pacvue, xiayinhai-pacvue
-  developer_member: zhoujunchen-pacvue, wenyu-pacvue        # 配置哪些人有生产发版权限,字符串要严格按照上面的格式
+  developer_member: hudongming-pacvue, yuwen-pacvue
 
 on:
-  workflow_dispatch: # 手动触发
+  workflow_dispatch:
     inputs:
       branch:
-        description: 'Choice branch to build'
+        description: 'Branch or Tag'
         required: true
         type: choice
         options:
@@ -29,14 +28,16 @@ on:
         required: true
         type: choice
         options:
-          - customer-api-web
+          - customer-api
       profile:
-        description: 'Choice env to deploy'
+        description: 'Env Profile'
         required: true
         type: choice
         options:
           - h10us-test
           - h10us-prod
+          - h10us-dev
+          - h10us-dev-2
       branch_manually:
         description: 'Manually input branch, if input this, use this first'
         required: false
@@ -48,15 +49,14 @@ on:
         options:
           - '17'
       autotest_enabled:
-        description: '给测试环境启用自动化测试'
+        description: "Auto Test On-Off"
         required: true
         type: boolean
         default: false
 
-########################### 我们会尽力把下方的代码做成开发人员不需要关心的 ################################
+
 jobs:
   init:
-    # 初始化一些参数
     runs-on: ubuntu-latest
     outputs:
       branch: ${{ steps.init_vars.outputs.branch }}
@@ -69,22 +69,19 @@ jobs:
         shell: python
         run: |
           import os, sys
-          # 输出产品线名称
           cmd = 'echo "productline=${{ env.productline }}" >> $GITHUB_OUTPUT'
           print(cmd)
           os.system(cmd)
 
-          # 输出代码仓库名称
           cmd = 'echo "repository=${{ env.repository }}" >> $GITHUB_OUTPUT'
           print(cmd)
           os.system(cmd)
 
-          # 把输入的变量做成python的格式
           branch_choice = '${{ inputs.branch }}'
           branch_manually = '${{ inputs.branch_manually }}'
+          module = '${{ inputs.module }}'
           profile = '${{ inputs.profile }}'
           
-          # 判断使用哪个分支
           branch = ''
           if len(branch_manually) == 0:
               branch = branch_choice
@@ -118,7 +115,7 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.init.outputs.matrix) }}
     uses: Pacvue/.github/.github/workflows/base_cicd-java.yml@v2
-    secrets: inherit # 隐式传递secret
+    secrets: inherit
     with:
       autotest_enabled: ${{ inputs.autotest_enabled }}
       module: ${{ matrix.module }}
